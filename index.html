@@ -1,0 +1,2238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Indian Mahjong Association</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+
+/* ── SWITCHER ── */
+#switcher{
+  position:fixed;top:0;left:0;right:0;z-index:9999;
+  display:flex;align-items:center;justify-content:center;gap:3px;
+  background:#080808;padding:10px 24px;
+  border-bottom:1px solid #1e1e1e;
+}
+.sw-label{
+  font-family:Helvetica,Arial,sans-serif;font-size:9px;
+  letter-spacing:.22em;text-transform:uppercase;color:#444;margin-right:14px;
+}
+.sw-btn{
+  font-family:Helvetica,Arial,sans-serif;font-size:10px;
+  letter-spacing:.15em;text-transform:uppercase;
+  padding:7px 20px;border:1px solid #2a2a2a;
+  background:transparent;color:#4a4a4a;cursor:pointer;transition:all .15s;
+}
+.sw-btn:hover{color:#aaa;border-color:#555;}
+.sw-btn.active{background:#f0f0f0;color:#080808;border-color:#f0f0f0;}
+
+/* ── PANELS ── */
+.dir{display:none;}
+.dir.on{display:block;}
+
+/* ═══════════════════════════════════════
+/* ═══════════════════════════════════════
+   D1 — IVORY ATELIER  (full page)
+   Cream #FAF3E8 · Gold #B8861A · Brown #2A1505
+═══════════════════════════════════════ */
+.d1{background:#FAF3E8;color:#2A1505;font-family:Helvetica,Arial,sans-serif;}
+
+/* ── NAV ── */
+.d1-nav{
+  position:sticky;top:43px;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px 64px;background:#FAF3E8;
+  border-bottom:1px solid rgba(184,134,26,.2);
+}
+.d1-logo-main{font-family:'Cormorant Garant',Georgia,serif;font-size:26px;font-weight:600;letter-spacing:.18em;color:#B8861A;line-height:1;}
+.d1-logo-sub{font-size:8.5px;letter-spacing:.3em;text-transform:uppercase;color:#2A1505;opacity:.55;margin-top:4px;}
+.d1-nav-links{display:flex;gap:36px;list-style:none;align-items:center;}
+.d1-nav-links a{text-decoration:none;color:#2A1505;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;opacity:.6;transition:opacity .15s;}
+.d1-nav-links a:hover{opacity:1;}
+
+/* ── TILE STRIP ── */
+.d1-tile-strip{display:flex;justify-content:center;align-items:center;gap:10px;padding:16px 0;background:rgba(184,134,26,.05);border-bottom:1px solid rgba(184,134,26,.12);}
+.d1-tile-strip svg{color:rgba(184,134,26,.5);}
+
+/* ── HERO ── */
+@keyframes d1herofade{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:none;}}
+.d1-hero{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 148px);}
+.d1-hero-left{display:flex;flex-direction:column;justify-content:center;padding:80px 64px;animation:d1herofade 1.1s ease .15s both;}
+.d1-eyebrow{font-size:10px;letter-spacing:.35em;text-transform:uppercase;color:#B8861A;margin-bottom:26px;}
+.d1-h1{font-family:'Cormorant Garant',Georgia,serif;font-size:clamp(44px,4.5vw,70px);font-weight:300;line-height:1.07;color:#2A1505;margin-bottom:26px;}
+.d1-h1 em{font-style:italic;color:#B8861A;}
+.d1-hero-p{font-size:14.5px;line-height:1.88;color:#2A1505;opacity:.68;max-width:400px;margin-bottom:44px;}
+.d1-hero-btns{display:flex;gap:20px;align-items:center;}
+.d1-btn-fill{padding:13px 30px;background:#B8861A;color:#FAF3E8;border:none;font-family:Helvetica,Arial,sans-serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:background .18s;}
+.d1-btn-fill:hover{background:#2A1505;}
+.d1-btn-text{border:none;background:none;font-family:Helvetica,Arial,sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#2A1505;opacity:.6;cursor:pointer;text-decoration:underline;text-underline-offset:5px;}
+.d1-hero-right{display:flex;align-items:stretch;position:relative;overflow:hidden;background:rgba(184,134,26,.04);border-left:1px solid rgba(184,134,26,.12);}
+.d1-hero-art{position:relative;width:100%;height:100%;}
+.d1-founder-img{width:100%;height:100%;object-fit:contain;object-position:center center;display:block;}
+.d1-hero-caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(250,243,232,.97) 45%,transparent);padding:56px 36px 28px;}
+.d1-hero-fn{font-family:'Cormorant Garant',Georgia,serif;font-size:20px;font-weight:400;letter-spacing:.05em;color:#2A1505;}
+.d1-hero-fr{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:#B8861A;margin-top:5px;}
+.d1-fc{position:absolute;width:26px;height:26px;border-color:#B8861A;border-style:solid;z-index:2;}
+.d1-fc.tl{top:12px;left:12px;border-width:2px 0 0 2px;}
+.d1-fc.tr{top:12px;right:12px;border-width:2px 2px 0 0;}
+.d1-fc.bl{bottom:12px;left:12px;border-width:0 0 2px 2px;}
+.d1-fc.br{bottom:12px;right:12px;border-width:0 2px 2px 0;}
+
+/* ── FADE ON SCROLL ── */
+.d1-fade{opacity:0;transform:translateY(36px);transition:opacity .8s ease,transform .8s ease;}
+.d1-fade.visible{opacity:1;transform:none;}
+.d1-fd1{transition-delay:.1s;}.d1-fd2{transition-delay:.2s;}.d1-fd3{transition-delay:.3s;}.d1-fd4{transition-delay:.4s;}.d1-fd5{transition-delay:.5s;}
+
+/* ── SECTION COMMON ── */
+.d1-sec-ey{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#B8861A;display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.d1-sec-ey-line{width:26px;height:1px;background:#B8861A;}
+.d1-sec-title{font-family:'Cormorant Garant',Georgia,serif;font-size:clamp(34px,3.5vw,52px);font-weight:300;color:#2A1505;margin-bottom:16px;}
+
+/* ── STORY ── */
+.d1-story{display:grid;grid-template-columns:1fr 1fr;gap:80px;padding:100px 64px;align-items:center;}
+.d1-story-art{position:relative;height:540px;overflow:hidden;border:1px solid rgba(184,134,26,.2);background:rgba(250,243,232,.6);}
+.d1-story-photo{width:100%;height:100%;object-fit:contain;object-position:center center;display:block;}
+.d1-story-art-deco{position:absolute;inset:0;width:100%;height:100%;color:rgba(42,21,5,.09);pointer-events:none;}
+.d1-story-caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(250,243,232,1) 55%,transparent);padding:64px 28px 24px;}
+.d1-story-fn{font-family:'Cormorant Garant',Georgia,serif;font-size:20px;font-weight:400;letter-spacing:.06em;color:#2A1505;}
+.d1-story-fr{font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:#B8861A;margin-top:5px;}
+.d1-story-rule{width:32px;height:1.5px;background:#B8861A;margin-bottom:24px;}
+.d1-story-h2{font-family:'Cormorant Garant',Georgia,serif;font-size:clamp(34px,3.5vw,52px);font-weight:300;line-height:1.1;color:#2A1505;margin-bottom:30px;}
+.d1-story-h2 em{font-style:italic;color:#B8861A;}
+.d1-story-p{font-size:15px;line-height:2.05;color:rgba(42,21,5,.65);margin-bottom:18px;}
+.d1-story-sig{margin-top:32px;font-family:'Cormorant Garant',Georgia,serif;font-size:28px;font-style:italic;color:rgba(184,134,26,.55);}
+
+/* ── WHAT MAKES IMA DIFFERENT ── */
+.d1-diff{padding:100px 64px;background:rgba(184,134,26,.04);}
+.d1-diff-head{text-align:center;margin-bottom:60px;}
+.d1-diff-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:960px;margin:0 auto;}
+.d1-diff-card{background:#FAF3E8;border:1px solid rgba(184,134,26,.18);padding:40px 32px;transition:border-color .2s,box-shadow .2s;}
+.d1-diff-card:hover{border-color:rgba(184,134,26,.5);box-shadow:0 8px 40px rgba(42,21,5,.06);}
+.d1-diff-icon{width:44px;height:62px;color:rgba(184,134,26,.55);margin-bottom:22px;}
+.d1-diff-card-h{font-family:'Cormorant Garant',Georgia,serif;font-size:24px;font-weight:400;color:#2A1505;margin-bottom:12px;}
+.d1-diff-card-p{font-size:13px;line-height:1.85;color:rgba(42,21,5,.55);}
+
+/* ── TRAINERS ── */
+.d1-trainers{padding:100px 64px;}
+.d1-trainers-head{text-align:center;margin-bottom:56px;}
+.d1-trainers-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;max-width:1040px;margin:0 auto;}
+.d1-tw{perspective:1200px;height:320px;cursor:pointer;}
+.d1-ti{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .65s cubic-bezier(.4,0,.2,1);}
+.d1-tw:hover .d1-ti{transform:rotateY(180deg);}
+.d1-tf,.d1-tb{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:7px;display:flex;flex-direction:column;align-items:center;padding:22px 14px 18px;}
+.d1-tf{background:#FFFDF8;border:1.5px solid rgba(184,134,26,.2);justify-content:flex-start;}
+.d1-tb{background:#2A1505;border:1.5px solid rgba(184,134,26,.35);transform:rotateY(180deg);justify-content:center;gap:10px;}
+.d1-tphoto{width:72px;height:72px;border-radius:50%;background:rgba(184,134,26,.08);border:1.5px solid rgba(184,134,26,.22);display:flex;align-items:center;justify-content:center;margin-bottom:14px;overflow:hidden;}
+.d1-tphoto svg{color:rgba(42,21,5,.35);width:36px;height:36px;}
+.d1-tname{font-family:'Cormorant Garant',Georgia,serif;font-size:16px;font-weight:500;color:#2A1505;text-align:center;margin-bottom:4px;}
+.d1-tcity{font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(42,21,5,.45);margin-bottom:10px;}
+.d1-tspec{font-size:11px;color:rgba(42,21,5,.58);text-align:center;border-top:1px solid rgba(42,21,5,.09);padding-top:10px;width:100%;line-height:1.5;}
+.d1-tile-deco{margin-top:auto;color:rgba(42,21,5,.1);}
+.d1-tb-name{font-family:'Cormorant Garant',Georgia,serif;font-size:17px;color:#B8861A;text-align:center;}
+.d1-tb-rule{width:22px;height:1px;background:rgba(184,134,26,.4);}
+.d1-tb-bio{font-size:11.5px;line-height:1.75;color:rgba(250,240,232,.7);text-align:center;}
+.d1-hover-hint{font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(42,21,5,.3);margin-top:auto;}
+
+/* ── EVENTS ── */
+.d1-events{padding:100px 64px;background:rgba(184,134,26,.04);}
+.d1-events-head{margin-bottom:52px;}
+.d1-events-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:960px;}
+.d1-ev{border:1px solid rgba(184,134,26,.2);padding:32px 28px;background:#FAF3E8;transition:border-color .2s,box-shadow .2s;}
+.d1-ev:hover{border-color:rgba(184,134,26,.5);box-shadow:0 8px 40px rgba(42,21,5,.07);}
+.d1-ev-badge{display:inline-block;font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;padding:4px 10px;margin-bottom:20px;}
+.d1-ev-badge.tr{background:rgba(184,134,26,.12);color:#B8861A;}
+.d1-ev-badge.tm{background:rgba(42,21,5,.07);color:#6B4420;}
+.d1-ev-name{font-family:'Cormorant Garant',Georgia,serif;font-size:22px;font-weight:400;color:#2A1505;margin-bottom:12px;line-height:1.2;}
+.d1-ev-meta{font-size:11px;color:rgba(42,21,5,.42);margin-bottom:5px;letter-spacing:.03em;}
+.d1-ev-meta strong{color:rgba(42,21,5,.7);}
+.d1-ev-rule{width:100%;height:1px;background:rgba(184,134,26,.15);margin:20px 0;}
+.d1-ev-btn{padding:10px 22px;border:1.5px solid rgba(184,134,26,.45);background:transparent;color:#B8861A;font-family:Helvetica,Arial,sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:all .18s;}
+.d1-ev-btn:hover{background:#B8861A;color:#FAF3E8;}
+
+/* ── MEMBERSHIP (Pearl / Ruby / Jade) ── */
+.d1-mem{padding:100px 64px;}
+.d1-mem-top{text-align:center;margin-bottom:40px;}
+.d1-mem-ey{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:14px;}
+.d1-mem-ey-line{width:40px;height:1px;background:#B8861A;}
+.d1-mem-ey-txt{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#B8861A;}
+.d1-mem-title{font-family:'Cormorant Garant',Georgia,serif;font-size:36px;font-weight:300;color:#2A1505;margin-bottom:8px;}
+.d1-mem-sub{font-family:'Cormorant Garant',Georgia,serif;font-style:italic;font-size:15px;color:rgba(42,21,5,.5);margin-top:6px;}
+.d1-mem-cards{display:flex;justify-content:center;gap:20px;}
+@keyframes d1slideup{from{opacity:0;transform:translateY(48px);}to{opacity:1;transform:none;}}
+/* Pearl / Ruby / Jade shared card chassis */
+.d4-mc{display:flex;flex-direction:column;width:240px;flex-shrink:0;border-radius:8px;overflow:hidden;opacity:0;transition:transform .25s ease,box-shadow .25s ease;}
+.d4-mc:hover{transform:translateY(-6px);}
+.d4-mc.pearl{background:#F8F4EE;border:2px solid #F5C87A;box-shadow:0 0 0 3px rgba(245,200,122,.12);}
+.d4-mc.pearl:hover{box-shadow:0 16px 48px rgba(184,134,26,.28);}
+.d4-mc.ruby{background:#1A0404;border:1px solid #8B2020;}
+.d4-mc.ruby:hover{box-shadow:0 16px 48px rgba(139,32,32,.35);}
+.d4-mc.jade{background:#061A0A;border:2px solid #2D7A3A;}
+.d4-mc.jade:hover{box-shadow:0 16px 48px rgba(45,122,58,.3);}
+.d4-mc.in{animation:d1slideup .65s ease both;}
+.d4-mc.in:nth-child(2){animation-delay:.12s;}
+.d4-mc.in:nth-child(3){animation-delay:.24s;}
+.d4-mc-top{height:200px;position:relative;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;}
+.d4-mc.pearl .d4-mc-top{background:rgba(200,185,155,.12);border-bottom:1px solid rgba(200,185,155,.3);}
+.d4-mc.ruby .d4-mc-top{background:rgba(139,32,32,.2);border-bottom:1px solid rgba(139,32,32,.35);}
+.d4-mc.jade .d4-mc-top{background:rgba(45,122,58,.15);border-bottom:1px solid rgba(45,122,58,.3);}
+.d4-bv-bar{position:absolute;top:0;left:0;right:0;background:#F5C87A;color:#3E0C0C;font-size:9px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;text-align:center;padding:5px 0;z-index:2;}
+.d4-tile-svg-wrap{display:flex;align-items:center;justify-content:center;}
+.d4-mc.ruby .d4-tile-svg-wrap{margin-top:22px;}
+.d4-hand-badge{position:absolute;bottom:0;left:50%;transform:translateX(-50%);white-space:nowrap;font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:4px 16px;}
+.d4-mc.pearl .d4-hand-badge{background:#C8B89A;color:#FAF4EE;}
+.d4-mc.ruby .d4-hand-badge{background:#8B2020;color:#FAF0E8;}
+.d4-mc.jade .d4-hand-badge{background:#2D7A3A;color:#E8F5EA;}
+.d4-mc-body{flex:1;display:flex;flex-direction:column;padding:20px 22px 0;}
+.d4-hand-name{font-family:'Cormorant Garant',Georgia,serif;font-size:26px;font-weight:300;margin-bottom:4px;}
+.d4-mc.pearl .d4-hand-name{color:#2A1505;}
+.d4-mc.ruby .d4-hand-name{color:#FAF0E8;}
+.d4-mc.jade .d4-hand-name{color:#E8F5EA;}
+.d4-hand-tag{font-family:'Cormorant Garant',Georgia,serif;font-style:italic;font-size:13px;line-height:1.5;margin-bottom:14px;}
+.d4-mc.pearl .d4-hand-tag{color:#8B6020;}
+.d4-mc.ruby .d4-hand-tag{color:rgba(250,240,232,.5);}
+.d4-mc.jade .d4-hand-tag{color:rgba(232,245,234,.5);}
+.d4-c-divider{width:100%;height:1px;margin:0 0 12px;}
+.d4-mc.pearl .d4-c-divider{background:rgba(184,134,26,.2);}
+.d4-mc.ruby .d4-c-divider{background:rgba(139,32,32,.5);}
+.d4-mc.jade .d4-c-divider{background:rgba(45,122,58,.3);}
+.d4-c-tier{font-size:9px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:4px;}
+.d4-mc.pearl .d4-c-tier{color:#B8861A;}
+.d4-mc.ruby .d4-c-tier{color:#C87070;}
+.d4-mc.jade .d4-c-tier{color:#5DB86A;}
+.d4-c-price{font-family:'Cormorant Garant',Georgia,serif;font-size:42px;font-weight:300;line-height:1;}
+sup.d4-rs{font-size:18px;vertical-align:super;}
+.d4-mc.pearl .d4-c-price{color:#2A1505;}
+.d4-mc.ruby .d4-c-price{color:#FAF0E8;}
+.d4-mc.jade .d4-c-price{color:#E8F5EA;}
+.d4-c-period{font-size:10px;margin-top:4px;margin-bottom:14px;}
+.d4-mc.pearl .d4-c-period{color:#8B6020;}
+.d4-mc.ruby .d4-c-period{color:rgba(250,240,232,.38);}
+.d4-mc.jade .d4-c-period{color:rgba(232,245,234,.38);}
+.d4-feats{list-style:none;margin-bottom:0;flex:1;}
+.d4-feats li{font-size:12px;padding:6px 0;display:flex;align-items:flex-start;gap:6px;line-height:1.4;}
+.d4-mc.pearl .d4-feats li{color:#6B4420;border-bottom:1px solid rgba(42,21,5,.07);}
+.d4-mc.ruby .d4-feats li{color:rgba(250,240,232,.58);border-bottom:1px solid rgba(250,240,232,.06);}
+.d4-mc.jade .d4-feats li{color:rgba(232,245,234,.58);border-bottom:1px solid rgba(232,245,234,.07);}
+.d4-mc.pearl .d4-feats li::before{content:'- ';color:#B8861A;flex-shrink:0;}
+.d4-mc.ruby .d4-feats li::before{content:'- ';color:#C87070;flex-shrink:0;}
+.d4-mc.jade .d4-feats li::before{content:'- ';color:#5DB86A;flex-shrink:0;}
+.d4-c-btn{display:block;margin:20px 22px 22px;padding:14px 10px;font-size:10px;letter-spacing:.15em;text-transform:uppercase;font-weight:600;white-space:nowrap;border-radius:2px;cursor:pointer;font-family:Helvetica,Arial,sans-serif;transition:opacity .18s;text-align:center;}
+.d4-c-btn:hover{opacity:.82;}
+.d4-mc.pearl .d4-c-btn{background:#B8861A;color:#FFFFFF;border:2px solid #B8861A;}
+.d4-mc.ruby .d4-c-btn{background:#8B2020;color:#FAF0E8;border:2px solid #8B2020;}
+.d4-mc.jade .d4-c-btn{background:#2D7A3A;color:#E8F5EA;border:2px solid #2D7A3A;}
+
+/* ── SOCIAL ── */
+.d1-social{padding:100px 64px;text-align:center;background:rgba(184,134,26,.04);}
+.d1-social-title{font-family:'Cormorant Garant',Georgia,serif;font-size:clamp(34px,3.5vw,50px);font-weight:300;color:#2A1505;margin-bottom:12px;}
+.d1-social-sub{font-size:14px;color:rgba(42,21,5,.44);margin-bottom:52px;}
+.d1-insta-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;max-width:660px;margin:0 auto 40px;}
+.d1-ig{aspect-ratio:1;background:rgba(184,134,26,.07);display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:pointer;transition:background .2s;}
+.d1-ig:hover{background:rgba(184,134,26,.16);}
+.d1-ig svg{width:36px;height:36px;opacity:.28;}
+.d1-social-handle{font-size:13px;letter-spacing:.1em;color:rgba(42,21,5,.42);margin-bottom:24px;}
+.d1-social-handle span{color:#B8861A;}
+.d1-social-btn{padding:12px 32px;border:1.5px solid rgba(184,134,26,.45);background:transparent;color:#B8861A;font-family:Helvetica,Arial,sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:all .18s;}
+.d1-social-btn:hover{background:#B8861A;color:#FAF3E8;}
+
+/* ── FOOTER ── */
+.d1-footer{background:#2A1505;}
+.d1-foot-main{padding:44px 64px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:40px;border-bottom:1px solid rgba(184,134,26,.1);}
+.d1-foot-logo{font-family:'Cormorant Garant',Georgia,serif;font-size:22px;font-weight:600;letter-spacing:.18em;color:#B8861A;}
+.d1-foot-tag{font-family:'Cormorant Garant',Georgia,serif;font-style:italic;font-size:15px;color:rgba(250,243,232,.38);text-align:center;letter-spacing:.04em;}
+.d1-foot-socials{display:flex;gap:12px;justify-content:flex-end;}
+.d1-foot-si{width:34px;height:34px;border:1px solid rgba(184,134,26,.22);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .18s;color:rgba(184,134,26,.5);}
+.d1-foot-si:hover{border-color:#B8861A;color:#B8861A;}
+.d1-foot-si svg{width:14px;height:14px;}
+.d1-foot-bar{padding:16px 64px;display:flex;align-items:center;justify-content:space-between;}
+.d1-foot-copy,.d1-foot-rzp{font-size:11px;color:rgba(250,243,232,.22);}
+.d1-foot-rzp span{color:rgba(184,134,26,.5);}
+
+
+/* ═══════════════════════════════════════
+   RESPONSIVE — MOBILE & TABLET
+═══════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* Tab switcher */
+  #switcher{justify-content:flex-start;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:10px 12px;gap:4px;scrollbar-width:none;}
+  #switcher::-webkit-scrollbar{display:none;}
+  .sw-label{display:none;}
+  .sw-btn{padding:7px 14px;font-size:9px;white-space:nowrap;flex-shrink:0;}
+
+  /* ── D1 ── */
+  .d1-nav{padding:14px 20px;}
+  .d1-nav-links{display:none;}
+  /* Hero */
+  .d1-hero{grid-template-columns:1fr;min-height:auto;}
+  .d1-hero-left{padding:56px 20px 40px;}
+  .d1-hero-right{height:380px;border-left:none;border-top:1px solid rgba(184,134,26,.12);}
+  /* Story */
+  .d1-story{grid-template-columns:1fr;padding:60px 20px;gap:32px;}
+  .d1-story-art{height:320px;}
+  /* Diff */
+  .d1-diff{padding:60px 20px;}
+  .d1-diff-cards{grid-template-columns:1fr;}
+  /* Trainers */
+  .d1-trainers{padding:60px 20px;}
+  .d1-trainers-grid{grid-template-columns:repeat(2,1fr);gap:14px;}
+  .d1-tw{height:260px;}
+  /* Events */
+  .d1-events{padding:60px 20px;}
+  .d1-events-grid{grid-template-columns:1fr;}
+  /* Membership */
+  .d1-mem{padding:60px 20px;}
+  .d1-mem-cards{flex-direction:column;align-items:center;gap:20px;padding:0 16px;}
+  .d4-mc{width:100%;max-width:380px;}
+  /* Social */
+  .d1-social{padding:60px 20px;}
+  .d1-insta-grid{grid-template-columns:repeat(2,1fr);}
+  /* Footer */
+  .d1-foot-main{grid-template-columns:1fr;padding:32px 20px;text-align:center;gap:14px;}
+  .d1-foot-socials{justify-content:center;}
+  .d1-foot-bar{padding:14px 20px;flex-direction:column;gap:6px;text-align:center;}
+
+  /* ── D2 ── */
+  .d2-nav{padding:14px 20px;}
+  .d2-nav-links{display:none;}
+  .d2-hero-content{grid-template-columns:1fr;padding:60px 24px 40px;}
+  .d2-founder{display:none;}
+  .d2-mem{padding:60px 24px;}
+  .d2-cards{grid-template-columns:1fr;gap:0;max-width:400px;background:transparent;}
+  .d2-card{border-bottom:1px solid rgba(245,200,122,.1);}
+  .d2-foot{padding:24px 20px;flex-direction:column;gap:12px;text-align:center;}
+
+  /* ── D3 ── */
+  .d3-nav{padding:14px 20px;}
+  .d3-nav-right{gap:0;}
+  .d3-nav-links{display:none;}
+  .d3-hero{grid-template-columns:1fr;min-height:auto;}
+  .d3-hero-left{padding:60px 24px 40px;}
+  .d3-hero-right{display:none;}
+  .d3-mem{padding:60px 24px;}
+  .d3-mem-hd{flex-direction:column;align-items:flex-start;gap:12px;}
+  .d3-mem-sub{text-align:left;max-width:100%;}
+  .d3-cards{grid-template-columns:1fr;max-width:400px;background:transparent;}
+  .d3-card{border-bottom:1px solid rgba(196,98,45,.15);}
+  .d3-foot{padding:24px 20px;flex-direction:column;gap:12px;text-align:center;}
+}
+
+@media (max-width: 480px) {
+  .d1-hero-left,.d2-hero-content,.d3-hero-left{padding-left:16px;padding-right:16px;}
+  .d1-story,.d1-diff,.d1-trainers,.d1-events,.d1-mem,.d1-social{padding-left:14px;padding-right:14px;}
+  .d1-h1{font-size:clamp(36px,9vw,56px);}
+  .d1-mem{padding:48px 14px;}
+}
+
+   D2 — BURGUNDY ROOM
+   Deep Red #3E0C0C · Gold #F5C87A
+═══════════════════════════════════════ */
+.d2{background:#3E0C0C;color:#F0D9B0;font-family:Helvetica,Arial,sans-serif;}
+
+.d2-nav{
+  position:sticky;top:43px;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:22px 64px;
+  background:rgba(24,4,4,.96);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(245,200,122,.12);
+}
+.d2-logo-main{
+  font-family:'Cormorant Garant',Georgia,serif;
+  font-size:24px;font-weight:600;letter-spacing:.2em;color:#F5C87A;line-height:1;
+}
+.d2-logo-sub{
+  font-size:8.5px;letter-spacing:.28em;text-transform:uppercase;
+  color:rgba(240,217,176,.45);margin-top:4px;
+}
+.d2-nav-links{display:flex;gap:32px;list-style:none;align-items:center;}
+.d2-nav-links a{
+  text-decoration:none;color:rgba(240,217,176,.55);font-size:10px;
+  letter-spacing:.22em;text-transform:uppercase;transition:color .15s;
+}
+.d2-nav-links a:hover{color:#F5C87A;}
+.d2-nav-cta{
+  margin-left:12px;padding:9px 22px;
+  border:1px solid rgba(245,200,122,.6);background:transparent;color:#F5C87A;
+  font-family:Helvetica,Arial,sans-serif;font-size:10px;
+  letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:all .18s;
+}
+.d2-nav-cta:hover{background:#F5C87A;color:#3E0C0C;}
+
+.d2-hero{
+  position:relative;min-height:calc(100vh - 138px);
+  display:flex;align-items:center;overflow:hidden;
+}
+.d2-hero-bg{
+  position:absolute;inset:0;
+  display:grid;grid-template-columns:repeat(9,1fr);
+  grid-template-rows:repeat(6,1fr);
+  opacity:.04;pointer-events:none;
+}
+.d2-hero-bg svg{color:#F5C87A;width:100%;height:100%;padding:4px;}
+.d2-hero-content{
+  position:relative;z-index:2;
+  display:grid;grid-template-columns:1fr 360px;
+  gap:80px;padding:80px 64px;width:100%;align-items:center;
+}
+.d2-eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:26px;}
+.d2-ey-line{width:32px;height:1px;background:#F5C87A;}
+.d2-ey-text{font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:#F5C87A;}
+.d2-h1{
+  font-family:'Cormorant Garant',Georgia,serif;
+  font-size:clamp(48px,5vw,78px);font-weight:300;line-height:1.04;
+  color:#F0D9B0;margin-bottom:26px;
+}
+.d2-h1 em{font-style:italic;color:#F5C87A;}
+.d2-hero-p{
+  font-size:14.5px;line-height:1.9;color:rgba(240,217,176,.62);
+  max-width:480px;margin-bottom:48px;
+}
+.d2-hero-btns{display:flex;gap:14px;align-items:center;}
+.d2-btn-fill{
+  padding:14px 32px;background:#F5C87A;color:#3E0C0C;border:none;
+  font-family:Helvetica,Arial,sans-serif;font-size:10px;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:background .18s;
+}
+.d2-btn-fill:hover{background:#fff;}
+.d2-btn-ghost{
+  padding:14px 32px;background:transparent;
+  color:rgba(240,217,176,.65);border:1px solid rgba(240,217,176,.2);
+  font-family:Helvetica,Arial,sans-serif;font-size:10px;
+  letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:all .18s;
+}
+.d2-btn-ghost:hover{border-color:#F5C87A;color:#F5C87A;}
+
+.d2-founder{display:flex;flex-direction:column;align-items:center;gap:16px;}
+.d2-f-wrap{position:relative;width:280px;height:360px;}
+.d2-f-outer{
+  position:absolute;inset:-12px;
+  border:1px solid rgba(245,200,122,.07);
+}
+.d2-f-photo{
+  position:absolute;inset:0;
+  background:rgba(245,200,122,.05);
+  border:1px solid rgba(245,200,122,.18);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
+}
+.d2-f-mono{
+  font-family:'Cormorant Garant',Georgia,serif;
+  font-size:80px;font-weight:300;color:rgba(245,200,122,.18);line-height:1;
+}
+.d2-f-cap{
+  font-size:9px;letter-spacing:.28em;text-transform:uppercase;
+  color:rgba(245,200,122,.38);
+}
+.d2-f-tiles{display:flex;gap:6px;margin-top:4px;}
+.d2-f-tiles svg{color:rgba(245,200,122,.3);}
+.d2-f-name{
+  font-family:'Cormorant Garant',Georgia,serif;
+  font-size:18px;font-weight:400;letter-spacing:.1em;color:#F0D9B0;text-align:center;
+}
+.d2-f-role{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,217,176,.4);text-align:center;}
+
+.d2-divider{
+  display:flex;align-items:center;
+  padding:0 64px;
+  border-top:1px solid rgba(245,200,122,.08);
+}
+.d2-div-tiles{display:flex;gap:8px;padding:14px 0;overflow:hidden;}
+.d2-div-tiles svg{color:rgba(245,200,122,.18);}
+
+.d2-mem{padding:100px 64px;}
+.d2-mem-top{text-align:center;margin-bottom:64px;}
+.d2-mem-ey{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:18px;}
+.d2-mem-ey-line{width:40px;height:1px;background:#F5C87A;}
+.d2-mem-ey-text{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#F5C87A;}
+.d2-mem-title{
+  font-family:'Cormorant Garant',Georgia,serif;
+  font-size:clamp(36px,3.5vw,52px);font-weight:300;
+  color:#F0D9B0;margin-bottom:12px;
+}
+.d2-mem-sub{font-size:14px;color:rgba(240,217,176,.45);}
+.d2-cards{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
+  background:rgba(245,200,122,.08);max-width:960px;margin:0 auto;
+}
+.d2-card{
+  padding:44px 32px;
+  background:#3E0C0C;position:relative;
+  transition:background .2s;
+}
+.d2-card:hover{background:rgba(245,200,122,.04);}
+.d2-card.fc{background:#2a0808;}
+.d2-card-badge{
+  position:absolute;top:-11px;right:24px;
+  background:#F5C87A;color:#3E0C0C;
+  font-size:8.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:4px 12px;
+}
+.d2-c-tier{
+  font-size:9px;letter-spacing:.3em;text-transform:uppercase;
+  color:#F5C87A;margin-bottom:20px;
+}
+.d2-c-price{
+  font-family:'Cormorant Garant',Georgia,serif;
+  font-size:58px;font-weight:300;color:#F0D9B0;line-height:1;
+}
+sup.d2-rs{font-size:22px;vertical-align:super;}
+.d2-c-dur{font-size:11px;color:rgba(240,217,176,.38);margin-top:6px;margin-bottom:28px;}
+.d2-rule{width:24px;height:1px;background:rgba(245,200,122,.45);margin-bottom:24px;}
+.d2-feats{list-style:none;margin-bottom:36px;}
+.d2-feats li{
+  font-size:12.5px;color:rgba(240,217,176,.62);
+  padding:9px 0;border-bottom:1px solid rgba(245,200,122,.08);
+  display:flex;align-items:center;gap:10px;
+}
+.d2-card.fc .d2-feats li{color:rgba(240,217,176,.82);}
+.d2-feats li::before{
+  content:'';width:3px;height:3px;border-radius:50%;
+  background:#F5C87A;flex-shrink:0;
+}
+.d2-c-btn{
+  width:100%;padding:12px;
+  border:1px solid rgba(245,200,122,.3);background:transparent;
+  color:rgba(240,217,176,.55);
+  font-family:Helvetica,Arial,sans-serif;font-size:10px;
+  letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:all .18s;
+}
+.d2-c-btn:hover{border-color:#F5C87A;color:#F5C87A;}
+.d2-card.fc .d2-c-btn{border-color:#F5C87A;color:#F5C87A;}
+.d2-card.fc .d2-c-btn:hover{background:#F5C87A;color:#3E0C0C;}
+
+.d2-foot{
+  padding:28px 64px;border-top:1px solid rgba(245,200,122,.08);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.d2-foot-logo{
+  font-family:'Cormorant Garant',Georgia,serif;
+  font-size:18px;font-weight:500;letter-spacing:.2em;color:#F5C87A;
+}
+.d2-foot-copy{font-size:11px;color:rgba(240,217,176,.22);}
+
+/* ═══════════════════════════════════════
+   D3 — INK & IVORY
+   Near Black #0E0A06 · Cream #F0E6D6 · Terracotta #C4622D
+═══════════════════════════════════════ */
+.d3{background:#0E0A06;color:#F0E6D6;font-family:Helvetica,Arial,sans-serif;}
+
+.d3-nav{
+  position:sticky;top:43px;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 60px;background:#0E0A06;
+  border-bottom:1px solid rgba(196,98,45,.18);
+}
+.d3-logo{display:flex;align-items:baseline;gap:14px;}
+.d3-logo-main{
+  font-family:'Cormorant Garant',Georgia,serif;
+  font-size:28px;font-weight:700;letter-spacing:.08em;color:#F0E6D6;
+}
+.d3-logo-sub{
+  font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:#C4622D;
+}
+.d3-nav-right{display:flex;align-items:center;gap:40px;}
+.d3-nav-links{display:flex;gap:32px;list-style:none;}
+.d3-nav-links a{
+  text-decoration:none;color:rgba(240,230,214,.45);font-size:10px;
+  letter-spacing:.2em;text-transform:uppercase;transition:color .15s;
+}
+.d3-nav-links a:hover{color:#F0E6D6;}
+.d3-nav-cta{
+  padding:10px 22px;background:#C4622D;color:#F0E6D6;border:none;
+  font-family:Helvetica,Arial,sans-serif;font-size:10px;
+  letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:background .18s;
+}
+.d3-nav-cta:hover{background:#a04e23;}
+
+.d3-hero{
+  display:grid;grid-template-columns:1fr 1fr;
+  min-height:calc(100vh - 120px);
+}
+.d3-hero-left{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:80px 60px;border-right:1px solid rgba(196,98,45,.12);
+  position:relative;overflow:hidden;
+}
+.d3-hero-num{
+  font-family:'Cormorant Garant',Georgia,serif;
+  font-size:180px;font-weight:700;line-height:1;
+  color:rgba(196,98,45,.08);
+  position:absolute;top:-10px;left:40px;
+  user-select:none;pointer-events:none;
+}
+.d3-eyebrow{
+  font-size:10px;letter-spacing:.35em;text-transform:uppercase;
+  color:#C4622D;margin-bottom:24px;position:relative;
+}
+.d3-h1{
+  font-family:'Cormorant Garant',Georgia,serif;
+  font-size:clamp(44px,4vw,66px);font-weight:300;line-height:1.1;
+  color:#F0E6D6;margin-bottom:24px;position:relative;
+}
+.d3-h1 strong{font-weight:600;font-style:italic;color:#C4622D;}
+.d3-hero-p{
+  font-size:14px;line-height:1.92;color:rgba(240,230,214,.58);
+  max-width:400px;margin-bottom:44px;position:relative;
+}
+.d3-hero-btns{display:flex;gap:14px;position:relative;}
+.d3-btn-fill{
+  padding:13px 28px;background:#C4622D;color:#F0E6D6;border:none;
+  font-family:Helvetica,Arial,sans-serif;font-size:10px;
+  letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:background .18s;
+}
+.d3-btn-fill:hover{background:#a04e23;}
+.d3-btn-outline{
+  padding:13px 28px;background:transparent;
+  color:rgba(240,230,214,.65);border:1px solid rgba(240,230,214,.18);
+  font-family:Helvetica,Arial,sans-serif;font-size:10px;
+  letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:all .18s;
+}
+.d3-btn-outline:hover{border-color:#F0E6D6;color:#F0E6D6;}
+
+.d3-hero-right{
+  display:flex;align-items:center;justify-content:center;
+  position:relative;padding:60px;
+  background:rgba(196,98,45,.03);
+}
+.d3-deco-tl{
+  position:absolute;top:28px;left:28px;opacity:.07;color:#C4622D;
+}
+.d3-deco-br{
+  position:absolute;bottom:28px;right:28px;opacity:.07;color:#C4622D;
+  transform:rotate(180deg);
+}
+.d3-frame{
+  position:relative;width:280px;height:380px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+}
+.d3-frame-accent{
+  position:absolute;top:0;left:0;right:0;height:3px;background:#C4622D;
+}
+.d3-frame-border{position:absolute;inset:0;border:1px solid rgba(240,230,214,.1);}
+.d3-frame-inner{display:flex;flex-direction:column;align-items:center;gap:12px;}
+.d3-frame-mono{
+  font-family:'Cormorant Garant',Georgia,serif;
+  font-size:88px;font-weight:300;color:rgba(240,230,214,.09);line-height:1;
+}
+.d3-frame-cap{
+  font-size:9px;letter-spacing:.3em;text-transform:uppercase;
+  color:rgba(196,98,45,.5);
+}
+
+.d3-strip{
+  display:flex;align-items:center;padding:14px 60px;gap:8px;
+  border-top:1px solid rgba(196,98,45,.12);
+  border-bottom:1px solid rgba(196,98,45,.12);
+}
+.d3-strip-label{
+  font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:rgba(196,98,45,.45);margin-right:8px;
+}
+.d3-strip-tiles{display:flex;gap:7px;}
+.d3-strip-tiles svg{color:rgba(196,98,45,.28);}
+
+.d3-mem{padding:100px 60px;}
+.d3-mem-hd{
+  display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:60px;
+}
+.d3-mem-title{
+  font-family:'Cormorant Garant',Georgia,serif;
+  font-size:clamp(36px,3.5vw,54px);font-weight:300;color:#F0E6D6;line-height:1.08;
+}
+.d3-mem-title span{color:#C4622D;font-style:italic;}
+.d3-mem-sub{
+  font-size:12px;color:rgba(240,230,214,.4);
+  max-width:260px;text-align:right;line-height:1.75;
+}
+.d3-cards{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:rgba(196,98,45,.12);max-width:960px;
+}
+.d3-card{
+  padding:44px 32px;background:#0E0A06;position:relative;transition:background .2s;
+}
+.d3-card:hover{background:rgba(196,98,45,.05);}
+.d3-card.fc{background:#160c06;}
+.d3-card-badge{
+  position:absolute;top:0;right:0;
+  background:#C4622D;color:#F0E6D6;
+  font-size:8px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:5px 12px;
+}
+.d3-c-tier{
+  font-size:9px;letter-spacing:.3em;text-transform:uppercase;
+  color:#C4622D;margin-bottom:20px;
+}
+.d3-c-price{
+  font-family:'Cormorant Garant',Georgia,serif;
+  font-size:58px;font-weight:300;color:#F0E6D6;line-height:1;
+}
+sup.d3-rs{font-size:22px;vertical-align:super;}
+.d3-c-dur{font-size:11px;color:rgba(240,230,214,.32);margin-top:6px;margin-bottom:28px;}
+.d3-rule{width:28px;height:2px;background:#C4622D;margin-bottom:24px;}
+.d3-feats{list-style:none;margin-bottom:36px;}
+.d3-feats li{
+  font-size:12.5px;color:rgba(240,230,214,.58);
+  padding:9px 0;border-bottom:1px solid rgba(240,230,214,.06);
+  display:flex;align-items:center;gap:10px;
+}
+.d3-card.fc .d3-feats li{color:rgba(240,230,214,.8);}
+.d3-feats li::before{
+  content:'';width:4px;height:4px;background:#C4622D;flex-shrink:0;
+}
+.d3-c-btn{
+  width:100%;padding:12px;background:transparent;
+  color:rgba(240,230,214,.45);border:1px solid rgba(240,230,214,.14);
+  font-family:Helvetica,Arial,sans-serif;font-size:10px;
+  letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:all .18s;
+}
+.d3-c-btn:hover{border-color:#C4622D;color:#C4622D;}
+.d3-card.fc .d3-c-btn{background:#C4622D;color:#F0E6D6;border-color:#C4622D;}
+.d3-card.fc .d3-c-btn:hover{background:#a04e23;}
+
+.d3-foot{
+  padding:28px 60px;border-top:1px solid rgba(196,98,45,.12);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.d3-foot-logo{
+  font-family:'Cormorant Garant',Georgia,serif;
+  font-size:20px;font-weight:700;letter-spacing:.08em;color:#F0E6D6;
+}
+.d3-foot-logo span{color:#C4622D;}
+.d3-foot-copy{font-size:11px;color:rgba(240,230,214,.22);}
+
+/* ── FOUNDER IMAGES ── */
+.d1-founder-img{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:top center;display:block;
+}
+.d2-founder-img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;}
+.d3-founder-img{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:top center;display:block;
+}
+
+/* ── MOBILE HAMBURGER & OVERLAY ── */
+.mob-ham{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:8px;flex-shrink:0;}
+.mob-ham span{display:block;width:24px;height:2px;background:currentColor;border-radius:1px;transition:all .2s;}
+.mob-menu-global{display:none;position:fixed;inset:0;background:rgba(6,6,6,.97);z-index:10000;flex-direction:column;align-items:center;justify-content:center;gap:36px;}
+.mob-menu-global.open{display:flex;}
+.mob-menu-global a{font-family:'Cormorant Garant',Georgia,serif;font-size:34px;font-weight:300;color:#FAF0E8;text-decoration:none;letter-spacing:.04em;transition:color .15s;}
+.mob-menu-global a:hover{color:#F5C87A;}
+.mob-close{position:absolute;top:22px;right:26px;background:none;border:none;color:rgba(250,240,232,.5);font-size:22px;cursor:pointer;line-height:1;transition:color .15s;}
+.mob-close:hover{color:#FAF0E8;}
+@media(max-width:768px){.mob-ham{display:flex;}}
+
+</style>
+</head>
+<body>
+
+<!-- SVG symbol library -->
+<svg style="display:none" aria-hidden="true">
+  <defs>
+    <symbol id="t-bamboo" viewBox="0 0 28 42">
+      <rect x="1.5" y="1.5" width="25" height="39" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.1"/>
+      <line x1="14" y1="7" x2="14" y2="35" stroke="currentColor" stroke-width="1"/>
+      <ellipse cx="14" cy="13" rx="5.5" ry="3.5" fill="none" stroke="currentColor" stroke-width=".9"/>
+      <ellipse cx="14" cy="21" rx="5.5" ry="3.5" fill="none" stroke="currentColor" stroke-width=".9"/>
+      <ellipse cx="14" cy="29" rx="5.5" ry="3.5" fill="none" stroke="currentColor" stroke-width=".9"/>
+    </symbol>
+    <symbol id="t-circle" viewBox="0 0 28 42">
+      <rect x="1.5" y="1.5" width="25" height="39" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.1"/>
+      <circle cx="14" cy="21" r="9" fill="none" stroke="currentColor" stroke-width="1"/>
+      <circle cx="14" cy="21" r="4" fill="none" stroke="currentColor" stroke-width=".8"/>
+    </symbol>
+    <symbol id="t-char" viewBox="0 0 28 42">
+      <rect x="1.5" y="1.5" width="25" height="39" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.1"/>
+      <line x1="14" y1="7" x2="14" y2="35" stroke="currentColor" stroke-width="1"/>
+      <line x1="7.5" y1="14" x2="20.5" y2="14" stroke="currentColor" stroke-width="1"/>
+      <line x1="7.5" y1="28" x2="20.5" y2="28" stroke="currentColor" stroke-width="1"/>
+      <rect x="9" y="18" width="10" height="7" fill="none" stroke="currentColor" stroke-width=".85"/>
+    </symbol>
+    <symbol id="t-wind" viewBox="0 0 28 42">
+      <rect x="1.5" y="1.5" width="25" height="39" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.1"/>
+      <line x1="7" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="1"/>
+      <line x1="14" y1="12" x2="14" y2="19" stroke="currentColor" stroke-width="1"/>
+      <line x1="7" y1="19" x2="21" y2="19" stroke="currentColor" stroke-width="1"/>
+      <line x1="7" y1="19" x2="7" y2="30" stroke="currentColor" stroke-width="1"/>
+      <line x1="21" y1="19" x2="21" y2="30" stroke="currentColor" stroke-width="1"/>
+      <line x1="7" y1="30" x2="21" y2="30" stroke="currentColor" stroke-width="1"/>
+      <line x1="14" y1="30" x2="14" y2="35" stroke="currentColor" stroke-width="1"/>
+    </symbol>
+    <symbol id="t-dragon" viewBox="0 0 28 42">
+      <rect x="1.5" y="1.5" width="25" height="39" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.1"/>
+      <line x1="8" y1="10" x2="20" y2="10" stroke="currentColor" stroke-width="1"/>
+      <line x1="14" y1="7" x2="14" y2="17" stroke="currentColor" stroke-width="1"/>
+      <rect x="8" y="17" width="12" height="12" fill="none" stroke="currentColor" stroke-width=".9"/>
+      <line x1="14" y1="17" x2="14" y2="29" stroke="currentColor" stroke-width=".9"/>
+      <line x1="8" y1="23" x2="20" y2="23" stroke="currentColor" stroke-width=".9"/>
+      <line x1="8" y1="32" x2="20" y2="32" stroke="currentColor" stroke-width="1"/>
+      <line x1="4" y1="35" x2="24" y2="35" stroke="currentColor" stroke-width="1"/>
+    </symbol>
+    <symbol id="t-large" viewBox="0 0 80 116">
+      <rect x="3" y="3" width="74" height="110" rx="6" fill="none" stroke="currentColor" stroke-width="2.5"/>
+      <circle cx="40" cy="58" r="26" fill="none" stroke="currentColor" stroke-width="2"/>
+      <circle cx="40" cy="58" r="12" fill="none" stroke="currentColor" stroke-width="1.5"/>
+      <circle cx="40" cy="58" r="4" fill="none" stroke="currentColor" stroke-width="1"/>
+      <line x1="14" y1="58" x2="66" y2="58" stroke="currentColor" stroke-width="1" opacity=".4"/>
+      <line x1="40" y1="32" x2="40" y2="84" stroke="currentColor" stroke-width="1" opacity=".4"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ══════════════════════════════════════
+<!-- ══════════════════════════════════════
+     DIRECTION 1 — IVORY ATELIER
+══════════════════════════════════════ -->
+<div class="dir d2" id="dir2">
+
+  <nav class="d2-nav">
+    <div>
+      <div class="d2-logo-main">IMA</div>
+      <div class="d2-logo-sub">Indian Mahjong Association</div>
+    </div>
+    <ul class="d2-nav-links">
+      <li><a href="#">About</a></li>
+      <li><a href="#">Tournaments</a></li>
+      <li><a href="#">Membership</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <button class="mob-ham" style="color:#FAF0E8" onclick="openMobMenu()"><span></span><span></span><span></span></button>
+  </nav>
+
+  <section class="d2-hero">
+    <div class="d2-hero-bg" aria-hidden="true">
+      <svg><use href="#t-bamboo"/></svg><svg><use href="#t-circle"/></svg><svg><use href="#t-char"/></svg><svg><use href="#t-wind"/></svg><svg><use href="#t-dragon"/></svg><svg><use href="#t-bamboo"/></svg><svg><use href="#t-circle"/></svg><svg><use href="#t-char"/></svg><svg><use href="#t-wind"/></svg>
+      <svg><use href="#t-circle"/></svg><svg><use href="#t-char"/></svg><svg><use href="#t-wind"/></svg><svg><use href="#t-dragon"/></svg><svg><use href="#t-bamboo"/></svg><svg><use href="#t-circle"/></svg><svg><use href="#t-char"/></svg><svg><use href="#t-wind"/></svg><svg><use href="#t-dragon"/></svg>
+      <svg><use href="#t-wind"/></svg><svg><use href="#t-dragon"/></svg><svg><use href="#t-bamboo"/></svg><svg><use href="#t-circle"/></svg><svg><use href="#t-char"/></svg><svg><use href="#t-wind"/></svg><svg><use href="#t-dragon"/></svg><svg><use href="#t-bamboo"/></svg><svg><use href="#t-circle"/></svg>
+      <svg><use href="#t-char"/></svg><svg><use href="#t-wind"/></svg><svg><use href="#t-dragon"/></svg><svg><use href="#t-bamboo"/></svg><svg><use href="#t-circle"/></svg><svg><use href="#t-char"/></svg><svg><use href="#t-wind"/></svg><svg><use href="#t-dragon"/></svg><svg><use href="#t-bamboo"/></svg>
+      <svg><use href="#t-dragon"/></svg><svg><use href="#t-bamboo"/></svg><svg><use href="#t-circle"/></svg><svg><use href="#t-char"/></svg><svg><use href="#t-wind"/></svg><svg><use href="#t-dragon"/></svg><svg><use href="#t-bamboo"/></svg><svg><use href="#t-circle"/></svg><svg><use href="#t-char"/></svg>
+      <svg><use href="#t-bamboo"/></svg><svg><use href="#t-circle"/></svg><svg><use href="#t-char"/></svg><svg><use href="#t-wind"/></svg><svg><use href="#t-dragon"/></svg><svg><use href="#t-bamboo"/></svg><svg><use href="#t-circle"/></svg><svg><use href="#t-char"/></svg><svg><use href="#t-wind"/></svg>
+    </div>
+
+    <div class="d2-hero-content">
+      <div>
+        <div class="d2-eyebrow">
+          <span class="d2-ey-line"></span>
+          <span class="d2-ey-text">Est. 2024 &nbsp;·&nbsp; All India</span>
+        </div>
+        <h1 class="d2-h1">The Art of the<br>Tile, <em>Refined</em></h1>
+        <p class="d2-hero-p">Within the Burgundy Room, every match is a ceremony. The Indian Mahjong Association brings together India's most dedicated players in pursuit of mastery, fellowship and the quiet thrill of the perfect draw.</p>
+        <div class="d2-hero-btns">
+          <button class="d2-btn-fill">Become a Member</button>
+          <button class="d2-btn-ghost">View Tournaments</button>
+        </div>
+      </div>
+
+      <div class="d2-founder">
+        <div class="d2-f-wrap">
+          <div class="d2-f-outer"></div>
+          <div class="d2-f-photo">
+            <img src="Vineeta.jpeg" alt="Vineeta Sahni, Founder" class="d2-founder-img">
+          </div>
+        </div>
+        <div class="d2-f-name">Vineeta Sahni</div>
+        <div class="d2-f-role">Founder &amp; President</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="d2-divider" aria-hidden="true">
+    <div class="d2-div-tiles">
+      <svg width="24" height="36"><use href="#t-bamboo"/></svg>
+      <svg width="24" height="36"><use href="#t-circle"/></svg>
+      <svg width="24" height="36"><use href="#t-char"/></svg>
+      <svg width="24" height="36"><use href="#t-wind"/></svg>
+      <svg width="24" height="36"><use href="#t-dragon"/></svg>
+      <svg width="24" height="36"><use href="#t-bamboo"/></svg>
+      <svg width="24" height="36"><use href="#t-circle"/></svg>
+      <svg width="24" height="36"><use href="#t-char"/></svg>
+      <svg width="24" height="36"><use href="#t-wind"/></svg>
+      <svg width="24" height="36"><use href="#t-dragon"/></svg>
+      <svg width="24" height="36"><use href="#t-bamboo"/></svg>
+      <svg width="24" height="36"><use href="#t-circle"/></svg>
+      <svg width="24" height="36"><use href="#t-wind"/></svg>
+      <svg width="24" height="36"><use href="#t-dragon"/></svg>
+    </div>
+  </div>
+
+  <section class="d2-mem">
+    <div class="d2-mem-top">
+      <div class="d2-mem-ey">
+        <span class="d2-mem-ey-line"></span>
+        <span class="d2-mem-ey-text">Membership</span>
+        <span class="d2-mem-ey-line"></span>
+      </div>
+      <h2 class="d2-mem-title">Enter the Room</h2>
+      <p class="d2-mem-sub">Three tiers of belonging, each a doorway into the game.</p>
+    </div>
+    <div class="d2-cards">
+
+      <div class="d2-card">
+        <p class="d2-c-tier">Annual</p>
+        <div class="d2-c-price"><sup class="d2-rs">₹</sup>1,000</div>
+        <p class="d2-c-dur">Valid for 1 year</p>
+        <div class="d2-rule"></div>
+        <ul class="d2-feats">
+          <li>Member directory access</li>
+          <li>Monthly newsletter</li>
+          <li>Beginner tournaments</li>
+          <li>Online resources</li>
+        </ul>
+        <button class="d2-c-btn">Select Plan</button>
+      </div>
+
+      <div class="d2-card fc">
+        <span class="d2-card-badge">Most Popular</span>
+        <p class="d2-c-tier">Five Year</p>
+        <div class="d2-c-price"><sup class="d2-rs">₹</sup>4,000</div>
+        <p class="d2-c-dur">Valid for 5 years</p>
+        <div class="d2-rule"></div>
+        <ul class="d2-feats">
+          <li>All annual benefits</li>
+          <li>Regional tournaments</li>
+          <li>Strategy workshops</li>
+          <li>Digital game archive</li>
+          <li>Priority event booking</li>
+        </ul>
+        <button class="d2-c-btn">Select Plan</button>
+      </div>
+
+      <div class="d2-card">
+        <p class="d2-c-tier">Lifetime</p>
+        <div class="d2-c-price"><sup class="d2-rs">₹</sup>10,000</div>
+        <p class="d2-c-dur">Membership for life</p>
+        <div class="d2-rule"></div>
+        <ul class="d2-feats">
+          <li>All benefits, forever</li>
+          <li>National championships</li>
+          <li>Founding member honour</li>
+          <li>Annual gala invitation</li>
+          <li>Personalized tile set</li>
+        </ul>
+        <button class="d2-c-btn">Select Plan</button>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="d2-foot">
+    <div class="d2-foot-logo">IMA</div>
+    <div style="display:flex;gap:8px;opacity:.22;" aria-hidden="true">
+      <svg width="18" height="28" style="color:#F5C87A"><use href="#t-wind"/></svg>
+      <svg width="18" height="28" style="color:#F5C87A"><use href="#t-dragon"/></svg>
+      <svg width="18" height="28" style="color:#F5C87A"><use href="#t-char"/></svg>
+    </div>
+    <p class="d2-foot-copy">&copy; 2024 Indian Mahjong Association. All rights reserved.</p>
+  </footer>
+
+</div>
+
+
+<!-- ══════════════════════════════════════
+     DIRECTION 4 — FULL STORY (styles)
+══════════════════════════════════════ -->
+<style>
+/* ── D4 BASE ── */
+.d4{background:#3E0C0C;color:#FAF0E8;font-family:Helvetica,Arial,sans-serif;}
+
+/* ── D4 NAV ── */
+.d4-nav{position:sticky;top:43px;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:22px 64px;background:rgba(20,3,3,.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(245,200,122,.1);}
+.d4-logo-main{font-family:'Cormorant Garant',Georgia,serif;font-size:24px;font-weight:600;letter-spacing:.2em;color:#F5C87A;line-height:1;}
+.d4-logo-sub{font-size:8.5px;letter-spacing:.28em;text-transform:uppercase;color:rgba(250,240,232,.38);margin-top:4px;}
+.d4-nav-links{display:flex;gap:32px;list-style:none;align-items:center;}
+.d4-nav-links a{text-decoration:none;color:rgba(250,240,232,.5);font-size:10px;letter-spacing:.22em;text-transform:uppercase;transition:color .15s;}
+.d4-nav-links a:hover{color:#F5C87A;}
+
+/* ── D4 HERO ── */
+@keyframes d4show{from{opacity:0;}to{opacity:1;}}
+@keyframes d4drift1{0%,100%{transform:translate(0,0) rotate(-3deg);}50%{transform:translate(22px,-18px) rotate(5deg);}}
+@keyframes d4drift2{0%,100%{transform:translate(0,0) rotate(7deg);}50%{transform:translate(-20px,26px) rotate(-5deg);}}
+@keyframes d4drift3{0%,100%{transform:translate(0,0) rotate(-6deg);}33%{transform:translate(16px,10px) rotate(2deg);}66%{transform:translate(-12px,-18px) rotate(-8deg);}}
+@keyframes d4drift4{0%,100%{transform:translate(0,0) rotate(3deg);}50%{transform:translate(-28px,12px) rotate(9deg);}}
+@keyframes d4herofade{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:none;}}
+
+.d4-hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;text-align:center;}
+.d4-hero-tiles{position:absolute;inset:0;pointer-events:none;}
+.d4-ht{position:absolute;opacity:0;}
+.d4-ht.s1{top:5%;left:3%;color:rgba(245,200,122,.14);animation:d4show .9s ease .2s both,d4drift1 18s ease-in-out 1.2s infinite;}
+.d4-ht.s2{top:9%;right:6%;color:rgba(245,200,122,.1);animation:d4show .9s ease .5s both,d4drift2 23s ease-in-out 1.5s infinite;}
+.d4-ht.s3{top:32%;left:1%;color:rgba(245,200,122,.12);animation:d4show .9s ease .8s both,d4drift3 26s ease-in-out 1.8s infinite;}
+.d4-ht.s4{top:48%;right:2%;color:rgba(245,200,122,.09);animation:d4show .9s ease .4s both,d4drift4 21s ease-in-out 1.3s infinite;}
+.d4-ht.s5{top:68%;left:8%;color:rgba(245,200,122,.13);animation:d4show .9s ease .7s both,d4drift2 16s ease-in-out 1.6s infinite;}
+.d4-ht.s6{top:72%;right:9%;color:rgba(245,200,122,.1);animation:d4show .9s ease 1s both,d4drift1 24s ease-in-out 2s infinite;}
+.d4-ht.s7{top:20%;left:18%;color:rgba(245,200,122,.06);animation:d4show .9s ease .3s both,d4drift4 29s ease-in-out 1.4s infinite;}
+.d4-ht.s8{top:54%;right:18%;color:rgba(245,200,122,.06);animation:d4show .9s ease .9s both,d4drift3 20s ease-in-out 1.9s infinite;}
+.d4-ht.s9{top:84%;left:38%;color:rgba(245,200,122,.11);animation:d4show .9s ease .6s both,d4drift2 17s ease-in-out 1.7s infinite;}
+.d4-ht.s10{top:4%;left:52%;color:rgba(245,200,122,.07);animation:d4show .9s ease 1.1s both,d4drift1 22s ease-in-out 2.1s infinite;}
+.d4-ht.s11{top:40%;left:30%;color:rgba(245,200,122,.04);animation:d4show .9s ease 1.3s both,d4drift3 32s ease-in-out 2.3s infinite;}
+.d4-ht.s12{top:60%;right:30%;color:rgba(245,200,122,.04);animation:d4show .9s ease 1.5s both,d4drift4 27s ease-in-out 2.5s infinite;}
+
+.d4-hero-content{position:relative;z-index:2;max-width:780px;padding:0 40px;animation:d4herofade 1.3s ease .2s both;}
+.d4-hero-ey{font-size:10px;letter-spacing:.35em;text-transform:uppercase;color:#F5C87A;display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:28px;}
+.d4-hero-ey-line{width:32px;height:1px;background:#F5C87A;}
+.d4-hero-h1{font-family:'Cormorant Garant',Georgia,serif;font-size:clamp(50px,6vw,86px);font-weight:300;font-style:italic;line-height:1.05;color:#FAF0E8;margin-bottom:24px;}
+.d4-hero-sub{font-size:16px;line-height:1.85;color:rgba(250,240,232,.62);max-width:520px;margin:0 auto 44px;}
+.d4-hero-cta{padding:15px 42px;background:#F5C87A;color:#3E0C0C;border:none;font-family:Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;cursor:pointer;transition:all .18s;}
+.d4-hero-cta:hover{background:#fff;}
+.d4-hero-scroll{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(250,240,232,.28);font-size:9px;letter-spacing:.2em;text-transform:uppercase;}
+.d4-scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,rgba(245,200,122,.4),transparent);}
+
+/* ── FADE ON SCROLL ── */
+.d4-fade{opacity:0;transform:translateY(36px);transition:opacity .8s ease,transform .8s ease;}
+.d4-fade.visible{opacity:1;transform:none;}
+.d4-fd1{transition-delay:.1s;}.d4-fd2{transition-delay:.2s;}.d4-fd3{transition-delay:.3s;}.d4-fd4{transition-delay:.4s;}.d4-fd5{transition-delay:.5s;}
+
+/* ── SECTION COMMON ── */
+.d4-sec-ey{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#F5C87A;display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.d4-sec-ey-line{width:26px;height:1px;background:#F5C87A;}
+.d4-sec-title{font-family:'Cormorant Garant',Georgia,serif;font-size:clamp(34px,3.5vw,52px);font-weight:300;color:#FAF0E8;margin-bottom:16px;}
+
+/* ── STORY ── */
+.d4-story{display:grid;grid-template-columns:1fr 1fr;gap:80px;padding:100px 64px;align-items:center;}
+.d4-story-art{position:relative;height:540px;overflow:hidden;border:1px solid rgba(245,200,122,.14);background:#1a0606;}
+.d4-story-photo{width:100%;height:100%;object-fit:contain;object-position:center center;display:block;}
+.d4-story-art-svg{position:absolute;inset:0;width:100%;height:100%;color:rgba(250,240,232,.13);pointer-events:none;}
+.d4-story-caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(42,8,8,1) 55%,transparent);padding:64px 28px 24px;}
+.d4-story-fn{font-family:'Cormorant Garant',Georgia,serif;font-size:20px;font-weight:400;letter-spacing:.06em;color:#FAF0E8;}
+.d4-story-fr{font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:#F5C87A;margin-top:5px;}
+.d4-story-rule{width:32px;height:1.5px;background:#F5C87A;margin-bottom:24px;}
+.d4-story-h2{font-family:'Cormorant Garant',Georgia,serif;font-size:clamp(34px,3.5vw,52px);font-weight:300;line-height:1.1;color:#FAF0E8;margin-bottom:30px;}
+.d4-story-h2 em{font-style:italic;color:#F5C87A;}
+.d4-story-p{font-size:15px;line-height:2.05;color:rgba(250,240,232,.65);margin-bottom:18px;}
+.d4-story-sig{margin-top:32px;font-family:'Cormorant Garant',Georgia,serif;font-size:28px;font-style:italic;color:rgba(245,200,122,.6);}
+
+/* ── WHAT MAKES IMA DIFFERENT ── */
+.d4-diff{padding:100px 64px;background:rgba(0,0,0,.18);}
+.d4-diff-head{text-align:center;margin-bottom:60px;}
+.d4-diff-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:960px;margin:0 auto;}
+.d4-diff-card{background:rgba(250,240,232,.045);border:1px solid rgba(245,200,122,.1);padding:40px 32px;transition:background .2s,border-color .2s;}
+.d4-diff-card:hover{background:rgba(250,240,232,.08);border-color:rgba(245,200,122,.35);}
+.d4-diff-icon{width:44px;height:62px;color:rgba(245,200,122,.55);margin-bottom:22px;}
+.d4-diff-card-h{font-family:'Cormorant Garant',Georgia,serif;font-size:24px;font-weight:400;color:#FAF0E8;margin-bottom:12px;}
+.d4-diff-card-p{font-size:13px;line-height:1.85;color:rgba(250,240,232,.56);}
+
+/* ── TRAINERS ── */
+.d4-trainers{padding:100px 64px;}
+.d4-trainers-head{text-align:center;margin-bottom:56px;}
+.d4-trainers-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;max-width:1040px;margin:0 auto;}
+.d4-tw{perspective:1200px;height:320px;cursor:pointer;}
+.d4-ti{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .65s cubic-bezier(.4,0,.2,1);}
+.d4-tw:hover .d4-ti{transform:rotateY(180deg);}
+.d4-tf,.d4-tb{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:7px;display:flex;flex-direction:column;align-items:center;padding:22px 14px 18px;}
+.d4-tf{background:#FAF0E8;border:2px solid rgba(62,12,12,.12);justify-content:flex-start;}
+.d4-tb{background:#2A0808;border:1.5px solid rgba(245,200,122,.28);transform:rotateY(180deg);justify-content:center;gap:10px;}
+.d4-tphoto{width:72px;height:72px;border-radius:50%;background:rgba(62,12,12,.08);border:1.5px solid rgba(62,12,12,.15);display:flex;align-items:center;justify-content:center;margin-bottom:14px;overflow:hidden;}
+.d4-tphoto svg{color:rgba(62,12,12,.28);width:36px;height:36px;}
+.d4-tname{font-family:'Cormorant Garant',Georgia,serif;font-size:16px;font-weight:500;color:#3E0C0C;text-align:center;margin-bottom:4px;}
+.d4-tcity{font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(62,12,12,.45);margin-bottom:10px;}
+.d4-tspec{font-size:11px;color:rgba(62,12,12,.58);text-align:center;border-top:1px solid rgba(62,12,12,.1);padding-top:10px;width:100%;line-height:1.5;}
+.d4-tile-deco{margin-top:auto;color:rgba(62,12,12,.1);}
+.d4-tb-name{font-family:'Cormorant Garant',Georgia,serif;font-size:17px;color:#F5C87A;text-align:center;}
+.d4-tb-rule{width:22px;height:1px;background:rgba(245,200,122,.4);}
+.d4-tb-bio{font-size:11.5px;line-height:1.75;color:rgba(250,240,232,.7);text-align:center;}
+.d4-hover-hint{font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(62,12,12,.3);margin-top:auto;}
+
+/* ── EVENTS ── */
+.d4-events{padding:100px 64px;background:rgba(0,0,0,.12);}
+.d4-events-head{margin-bottom:52px;}
+.d4-events-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:960px;}
+.d4-ev{border:1px solid rgba(245,200,122,.18);padding:32px 28px;position:relative;transition:border-color .2s,background .2s;}
+.d4-ev:hover{border-color:rgba(245,200,122,.45);background:rgba(245,200,122,.03);}
+.d4-ev-badge{display:inline-block;font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;padding:4px 10px;margin-bottom:20px;}
+.d4-ev-badge.tr{background:rgba(245,200,122,.14);color:#F5C87A;}
+.d4-ev-badge.tm{background:rgba(196,98,45,.2);color:#e07a4a;}
+.d4-ev-name{font-family:'Cormorant Garant',Georgia,serif;font-size:22px;font-weight:400;color:#FAF0E8;margin-bottom:12px;line-height:1.2;}
+.d4-ev-meta{font-size:11px;color:rgba(250,240,232,.42);margin-bottom:5px;letter-spacing:.03em;}
+.d4-ev-meta strong{color:rgba(250,240,232,.68);}
+.d4-ev-rule{width:100%;height:1px;background:rgba(245,200,122,.1);margin:20px 0;}
+.d4-ev-btn{padding:10px 22px;border:1px solid rgba(245,200,122,.38);background:transparent;color:#F5C87A;font-family:Helvetica,Arial,sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:all .18s;}
+.d4-ev-btn:hover{background:#F5C87A;color:#3E0C0C;}
+
+/* ── MEMBERSHIP wrapper ── */
+.d4-mem{padding:100px 64px;}
+.d4-mem-top{text-align:center;margin-bottom:40px;}
+.d4-mem-ey{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:14px;}
+.d4-mem-ey-line{width:40px;height:1px;background:#F5C87A;}
+.d4-mem-ey-txt{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#F5C87A;}
+.d4-mem-title{font-family:'Cormorant Garant',Georgia,serif;font-size:36px;font-weight:300;color:#FAF0E8;margin-bottom:8px;}
+.d4-mem-sub{font-family:'Cormorant Garant',Georgia,serif;font-style:italic;font-size:15px;color:rgba(250,240,232,.5);margin-top:6px;}
+.d4-mem-cards{display:flex;justify-content:center;gap:20px;}
+
+/* ── SOCIAL ── */
+.d4-social{padding:100px 64px;text-align:center;}
+.d4-social-title{font-family:'Cormorant Garant',Georgia,serif;font-size:clamp(34px,3.5vw,50px);font-weight:300;color:#FAF0E8;margin-bottom:12px;}
+.d4-social-sub{font-size:14px;color:rgba(250,240,232,.44);margin-bottom:52px;}
+.d4-insta-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;max-width:660px;margin:0 auto 40px;}
+.d4-ig{aspect-ratio:1;background:rgba(245,200,122,.06);display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:pointer;transition:background .2s;}
+.d4-ig:hover{background:rgba(245,200,122,.12);}
+.d4-ig svg{width:36px;height:36px;opacity:.18;}
+.d4-social-handle{font-size:13px;letter-spacing:.1em;color:rgba(250,240,232,.42);margin-bottom:24px;}
+.d4-social-handle span{color:#F5C87A;}
+.d4-social-btn{padding:12px 32px;border:1px solid rgba(245,200,122,.38);background:transparent;color:#F5C87A;font-family:Helvetica,Arial,sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:all .18s;}
+.d4-social-btn:hover{background:#F5C87A;color:#3E0C0C;}
+
+/* ── FOOTER ── */
+.d4-footer{background:#2A0808;}
+.d4-foot-main{padding:44px 64px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:40px;border-bottom:1px solid rgba(245,200,122,.08);}
+.d4-foot-logo{font-family:'Cormorant Garant',Georgia,serif;font-size:22px;font-weight:600;letter-spacing:.18em;color:#F5C87A;}
+.d4-foot-tag{font-family:'Cormorant Garant',Georgia,serif;font-style:italic;font-size:15px;color:rgba(250,240,232,.38);text-align:center;letter-spacing:.04em;}
+.d4-foot-socials{display:flex;gap:12px;justify-content:flex-end;}
+.d4-foot-si{width:34px;height:34px;border:1px solid rgba(245,200,122,.18);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .18s;color:rgba(245,200,122,.45);}
+.d4-foot-si:hover{border-color:#F5C87A;color:#F5C87A;}
+.d4-foot-si svg{width:14px;height:14px;}
+.d4-foot-bar{padding:16px 64px;display:flex;align-items:center;justify-content:space-between;}
+.d4-foot-copy,.d4-foot-rzp{font-size:11px;color:rgba(250,240,232,.2);}
+.d4-foot-rzp span{color:rgba(245,200,122,.45);}
+
+/* ── D4 MOBILE ── */
+@media (max-width:768px){
+  .d4-nav{padding:14px 20px;}
+  .d4-nav-links{display:none;}
+  .d4-hero-content{padding:0 20px;max-width:100%;}
+  .d4-hero-sub{font-size:14px;}
+  .d4-story{grid-template-columns:1fr;padding:60px 20px;gap:32px;}
+  .d4-story-art{height:300px;}
+  .d4-diff{padding:60px 20px;}
+  .d4-diff-cards{grid-template-columns:1fr;}
+  .d4-trainers{padding:60px 20px;}
+  .d4-trainers-grid{grid-template-columns:repeat(2,1fr);gap:14px;}
+  .d4-tw{height:260px;}
+  .d4-events{padding:60px 20px;}
+  .d4-events-grid{grid-template-columns:1fr;}
+  .d4-mem{padding:60px 20px;}
+  .d4-mem-cards{flex-direction:column;align-items:center;gap:20px;padding:0 16px;}
+  .d4-social{padding:60px 20px;}
+  .d4-insta-grid{grid-template-columns:repeat(2,1fr);}
+  .d4-foot-main{grid-template-columns:1fr;padding:32px 20px;text-align:center;gap:14px;}
+  .d4-foot-socials{justify-content:center;}
+  .d4-foot-bar{padding:14px 20px;flex-direction:column;gap:6px;text-align:center;}
+}
+</style>
+
+
+<!-- ══════════════════════════════════════
+     DIRECTION 4 — FULL STORY
+══════════════════════════════════════ -->
+<div class="dir d4" id="dir4">
+
+  <!-- NAV -->
+  <nav class="d4-nav">
+    <div>
+      <img src="mahjong_logo.jpg" alt="Indian Mahjong Association" style="height:55px;width:auto;display:block;">
+    </div>
+    <ul class="d4-nav-links">
+      <li><a href="#">About</a></li>
+      <li><a href="#">Tournaments</a></li>
+      <li><a href="#">Membership</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <button class="mob-ham" style="color:#FAF0E8" onclick="openMobMenu()"><span></span><span></span><span></span></button>
+  </nav>
+
+  <!-- ── S1: HERO ── -->
+  <section class="d4-hero">
+    <div class="d4-hero-tiles" aria-hidden="true">
+      <svg class="d4-ht s1" width="52" height="78"><use href="#t-bamboo"/></svg>
+      <svg class="d4-ht s2" width="44" height="66"><use href="#t-circle"/></svg>
+      <svg class="d4-ht s3" width="60" height="90"><use href="#t-wind"/></svg>
+      <svg class="d4-ht s4" width="48" height="72"><use href="#t-dragon"/></svg>
+      <svg class="d4-ht s5" width="40" height="60"><use href="#t-bamboo"/></svg>
+      <svg class="d4-ht s6" width="56" height="84"><use href="#t-char"/></svg>
+      <svg class="d4-ht s7" width="88" height="132"><use href="#t-circle"/></svg>
+      <svg class="d4-ht s8" width="96" height="144"><use href="#t-bamboo"/></svg>
+      <svg class="d4-ht s9" width="44" height="66"><use href="#t-dragon"/></svg>
+      <svg class="d4-ht s10" width="72" height="108"><use href="#t-wind"/></svg>
+      <svg class="d4-ht s11" width="120" height="180"><use href="#t-char"/></svg>
+      <svg class="d4-ht s12" width="110" height="165"><use href="#t-circle"/></svg>
+    </div>
+    <div class="d4-hero-content">
+      <div class="d4-hero-ey">
+        <span class="d4-hero-ey-line"></span>
+        <span>The Indian Mahjong Association</span>
+        <span class="d4-hero-ey-line"></span>
+      </div>
+      <h1 class="d4-hero-h1">Where India Plays<br>the True Game</h1>
+      <p class="d4-hero-sub">The authentic Chinese mahjong tradition, with an Indian heart. Community, strategy and belonging. One tile at a time.</p>
+      <button class="d4-hero-cta">Join Now</button>
+    </div>
+    <div class="d4-hero-scroll" aria-hidden="true">
+      <span class="d4-scroll-line"></span>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ── S2: OUR STORY ── -->
+  <section class="d4-story">
+    <div class="d4-fade">
+      <div class="d4-story-art">
+        <img src="Vineeta.jpeg" alt="Vineeta Sahni" class="d4-story-photo">
+        <svg class="d4-story-art-svg" viewBox="0 0 440 540" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <g transform="translate(360,70)">
+            <circle cx="0" cy="0" r="9" fill="none" stroke="currentColor" stroke-width="1"/>
+            <circle cx="0" cy="-28" r="17" fill="none" stroke="currentColor" stroke-width="1"/>
+            <circle cx="24" cy="-14" r="17" fill="none" stroke="currentColor" stroke-width="1"/>
+            <circle cx="24" cy="14" r="17" fill="none" stroke="currentColor" stroke-width="1"/>
+            <circle cx="0" cy="28" r="17" fill="none" stroke="currentColor" stroke-width="1"/>
+            <circle cx="-24" cy="14" r="17" fill="none" stroke="currentColor" stroke-width="1"/>
+            <circle cx="-24" cy="-14" r="17" fill="none" stroke="currentColor" stroke-width="1"/>
+          </g>
+          <g transform="translate(30,30)" opacity=".8">
+            <rect x="0" y="0" width="56" height="80" rx="4" fill="none" stroke="currentColor" stroke-width="1.5"/>
+            <rect x="6" y="6" width="44" height="68" rx="2" fill="none" stroke="currentColor" stroke-width=".7"/>
+            <line x1="28" y1="16" x2="28" y2="64" stroke="currentColor" stroke-width="1"/>
+            <line x1="14" y1="28" x2="42" y2="28" stroke="currentColor" stroke-width="1"/>
+            <line x1="14" y1="40" x2="42" y2="40" stroke="currentColor" stroke-width="1"/>
+            <line x1="14" y1="54" x2="42" y2="54" stroke="currentColor" stroke-width="1"/>
+          </g>
+          <g transform="translate(20,160)">
+            <line x1="0" y1="0" x2="0" y2="280" stroke="currentColor" stroke-width="1.5"/>
+            <ellipse cx="0" cy="40" rx="14" ry="8" fill="none" stroke="currentColor" stroke-width="1"/>
+            <ellipse cx="0" cy="95" rx="14" ry="8" fill="none" stroke="currentColor" stroke-width="1"/>
+            <ellipse cx="0" cy="150" rx="14" ry="8" fill="none" stroke="currentColor" stroke-width="1"/>
+            <ellipse cx="0" cy="205" rx="14" ry="8" fill="none" stroke="currentColor" stroke-width="1"/>
+            <ellipse cx="0" cy="260" rx="14" ry="8" fill="none" stroke="currentColor" stroke-width="1"/>
+          </g>
+          <g transform="translate(345,400)" opacity=".7">
+            <rect x="0" y="0" width="56" height="80" rx="4" fill="none" stroke="currentColor" stroke-width="1.5"/>
+            <rect x="6" y="6" width="44" height="68" rx="2" fill="none" stroke="currentColor" stroke-width=".7"/>
+            <circle cx="28" cy="40" r="18" fill="none" stroke="currentColor" stroke-width="1"/>
+            <circle cx="28" cy="40" r="8" fill="none" stroke="currentColor" stroke-width=".8"/>
+          </g>
+          <line x1="60" y1="140" x2="160" y2="140" stroke="currentColor" stroke-width=".5" opacity=".5"/>
+          <line x1="60" y1="148" x2="120" y2="148" stroke="currentColor" stroke-width=".5" opacity=".3"/>
+          <line x1="300" y1="320" x2="420" y2="320" stroke="currentColor" stroke-width=".5" opacity=".5"/>
+        </svg>
+        <div class="d4-story-caption">
+          <div class="d4-story-fn">Vineeta Sahni</div>
+          <div class="d4-story-fr">Founder, IMA</div>
+        </div>
+      </div>
+    </div>
+    <div class="d4-fade d4-fd2">
+      <div class="d4-story-rule"></div>
+      <h2 class="d4-story-h2">A Game Born<br>at the <em>Front</em></h2>
+      <p class="d4-story-p">Vineeta discovered mahjong as an army wife, stationed far from home. Around a table with fellow army wives, tiles became a language of patience, strategy and belonging.</p>
+      <p class="d4-story-p">She brought that game home to India. She taught it to her children, her neighbours, her community. And she saw what the table did: it made strangers into friends, and friends into family.</p>
+      <p class="d4-story-p">The Indian Mahjong Association was born from that conviction: that this game, in all its richness, belongs in every Indian home.</p>
+      <div class="d4-story-sig">- Vineeta Sahni</div>
+    </div>
+  </section>
+
+  <!-- ── S3: WHAT MAKES IMA DIFFERENT ── -->
+  <section class="d4-diff">
+    <div class="d4-diff-head d4-fade">
+      <div class="d4-sec-ey"><span class="d4-sec-ey-line"></span><span>Our Principles</span></div>
+      <h2 class="d4-sec-title">What Makes IMA Different</h2>
+    </div>
+    <div class="d4-diff-cards">
+      <div class="d4-diff-card d4-fade d4-fd1">
+        <svg class="d4-diff-icon" viewBox="0 0 28 42"><use href="#t-char"/></svg>
+        <div class="d4-diff-card-h">The Authentic Game</div>
+        <p class="d4-diff-card-p">We play and teach the true Chinese mahjong tradition: 144 tiles, proper scoring and the complete ruleset as it was meant to be played.</p>
+      </div>
+      <div class="d4-diff-card d4-fade d4-fd2">
+        <svg class="d4-diff-icon" viewBox="0 0 44 62" style="height:54px;">
+          <circle cx="22" cy="22" r="6" fill="none" stroke="currentColor" stroke-width="1.2"/>
+          <circle cx="22" cy="4" r="10" fill="none" stroke="currentColor" stroke-width="1"/>
+          <circle cx="37" cy="13" r="10" fill="none" stroke="currentColor" stroke-width="1"/>
+          <circle cx="37" cy="31" r="10" fill="none" stroke="currentColor" stroke-width="1"/>
+          <circle cx="22" cy="40" r="10" fill="none" stroke="currentColor" stroke-width="1"/>
+          <circle cx="7" cy="31" r="10" fill="none" stroke="currentColor" stroke-width="1"/>
+          <circle cx="7" cy="13" r="10" fill="none" stroke="currentColor" stroke-width="1"/>
+          <line x1="22" y1="44" x2="22" y2="62" stroke="currentColor" stroke-width="1"/>
+        </svg>
+        <div class="d4-diff-card-h">An Indian Touch</div>
+        <p class="d4-diff-card-p">Adapted with warmth for Indian families: workshops in Hindi and English, family-friendly sessions and a community that feels like home.</p>
+      </div>
+      <div class="d4-diff-card d4-fade d4-fd3">
+        <svg class="d4-diff-icon" viewBox="0 0 28 42"><use href="#t-circle"/></svg>
+        <div class="d4-diff-card-h">Open to All</div>
+        <p class="d4-diff-card-p">Every gender, age and background is welcome at our table. From eight to eighty, from beginner to champion. The tiles make no distinction.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── S4: TRAINERS ── -->
+  <section class="d4-trainers">
+    <div class="d4-trainers-head d4-fade">
+      <div class="d4-sec-ey" style="justify-content:center;"><span class="d4-sec-ey-line"></span><span>The Experts</span><span class="d4-sec-ey-line"></span></div>
+      <h2 class="d4-sec-title" style="text-align:center;">Meet Our Trainers</h2>
+      <p style="font-size:13px;color:rgba(250,240,232,.4);text-align:center;margin-top:4px;">Hover a card to learn more</p>
+    </div>
+    <div class="d4-trainers-grid">
+      <div class="d4-tw d4-fade d4-fd1"><div class="d4-ti">
+        <div class="d4-tf"><div class="d4-tphoto"><svg viewBox="0 0 40 40"><circle cx="20" cy="14" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5 40 C5 27 35 27 35 40" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></div>
+          <div class="d4-tname">Priya Sharma</div><div class="d4-tcity">New Delhi</div><div class="d4-tspec">Competitive Play</div>
+          <div class="d4-tile-deco"><svg width="18" height="28"><use href="#t-bamboo"/></svg></div></div>
+        <div class="d4-tb"><div class="d4-tb-name">Priya Sharma</div><div class="d4-tb-rule"></div>
+          <div class="d4-tb-bio">12 years competitive play. Ranked top 10 nationally. Specialises in Hong Kong and Riichi rulesets. Former IMA Youth Champion.</div></div>
+      </div></div>
+      <div class="d4-tw d4-fade d4-fd2"><div class="d4-ti">
+        <div class="d4-tf"><div class="d4-tphoto"><svg viewBox="0 0 40 40"><circle cx="20" cy="14" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5 40 C5 27 35 27 35 40" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></div>
+          <div class="d4-tname">Rajan Mehta</div><div class="d4-tcity">Mumbai</div><div class="d4-tspec">Strategy &amp; Tactics</div>
+          <div class="d4-tile-deco"><svg width="18" height="28"><use href="#t-circle"/></svg></div></div>
+        <div class="d4-tb"><div class="d4-tb-name">Rajan Mehta</div><div class="d4-tb-rule"></div>
+          <div class="d4-tb-bio">Trained under masters in Macau. Coaches the Mumbai Regional Team. Author of <em>'Tile &amp; Mind'</em>.</div></div>
+      </div></div>
+      <div class="d4-tw d4-fade d4-fd3"><div class="d4-ti">
+        <div class="d4-tf"><div class="d4-tphoto"><svg viewBox="0 0 40 40"><circle cx="20" cy="14" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5 40 C5 27 35 27 35 40" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></div>
+          <div class="d4-tname">Anita Krishnan</div><div class="d4-tcity">Bangalore</div><div class="d4-tspec">Beginner Workshops</div>
+          <div class="d4-tile-deco"><svg width="18" height="28"><use href="#t-char"/></svg></div></div>
+        <div class="d4-tb"><div class="d4-tb-name">Anita Krishnan</div><div class="d4-tb-rule"></div>
+          <div class="d4-tb-bio">Known for her patient teaching style. Has introduced over 400 beginners to mahjong across South India in 3 years.</div></div>
+      </div></div>
+      <div class="d4-tw d4-fade d4-fd4"><div class="d4-ti">
+        <div class="d4-tf"><div class="d4-tphoto"><svg viewBox="0 0 40 40"><circle cx="20" cy="14" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5 40 C5 27 35 27 35 40" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></div>
+          <div class="d4-tname">Deepak Nair</div><div class="d4-tcity">Chennai</div><div class="d4-tspec">Advanced Techniques</div>
+          <div class="d4-tile-deco"><svg width="18" height="28"><use href="#t-wind"/></svg></div></div>
+        <div class="d4-tb"><div class="d4-tb-name">Deepak Nair</div><div class="d4-tb-rule"></div>
+          <div class="d4-tb-bio">Former national champion. Expert in tile analysis and advanced scoring. Runs intensive weekend programmes in Chennai.</div></div>
+      </div></div>
+      <div class="d4-tw d4-fade d4-fd5"><div class="d4-ti">
+        <div class="d4-tf"><div class="d4-tphoto"><svg viewBox="0 0 40 40"><circle cx="20" cy="14" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5 40 C5 27 35 27 35 40" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></div>
+          <div class="d4-tname">Meera Patel</div><div class="d4-tcity">Pune</div><div class="d4-tspec">Family Mahjong</div>
+          <div class="d4-tile-deco"><svg width="18" height="28"><use href="#t-dragon"/></svg></div></div>
+        <div class="d4-tb"><div class="d4-tb-name">Meera Patel</div><div class="d4-tb-rule"></div>
+          <div class="d4-tb-bio">Brings mahjong into family settings with warmth and joy. Runs beloved weekend workshops for parents and children together.</div></div>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- ── S5: EVENTS ── -->
+  <section class="d4-events">
+    <div class="d4-events-head d4-fade">
+      <div class="d4-sec-ey"><span class="d4-sec-ey-line"></span><span>What's On</span></div>
+      <h2 class="d4-sec-title">Events &amp; Tournaments</h2>
+    </div>
+    <div class="d4-events-grid">
+      <div class="d4-ev d4-fade d4-fd1">
+        <span class="d4-ev-badge tr">Training</span>
+        <div class="d4-ev-name">Beginner Training Camp</div>
+        <p class="d4-ev-meta">Date &nbsp;<strong>15–16 June 2025</strong></p>
+        <p class="d4-ev-meta">City &nbsp;<strong>New Delhi</strong></p>
+        <p class="d4-ev-meta">Format &nbsp;<strong>Weekend Intensive</strong></p>
+        <div class="d4-ev-rule"></div>
+        <button class="d4-ev-btn">Register Now</button>
+      </div>
+      <div class="d4-ev d4-fade d4-fd2">
+        <span class="d4-ev-badge tm">Tournament</span>
+        <div class="d4-ev-name">IMA South India Championship</div>
+        <p class="d4-ev-meta">Date &nbsp;<strong>6 July 2025</strong></p>
+        <p class="d4-ev-meta">City &nbsp;<strong>Bangalore</strong></p>
+        <p class="d4-ev-meta">Format &nbsp;<strong>Swiss Draw &middot; 4 Rounds</strong></p>
+        <div class="d4-ev-rule"></div>
+        <button class="d4-ev-btn">Register Now</button>
+      </div>
+      <div class="d4-ev d4-fade d4-fd3">
+        <span class="d4-ev-badge tr">Training</span>
+        <div class="d4-ev-name">Family Mahjong Day</div>
+        <p class="d4-ev-meta">Date &nbsp;<strong>20 July 2025</strong></p>
+        <p class="d4-ev-meta">City &nbsp;<strong>Mumbai</strong></p>
+        <p class="d4-ev-meta">Format &nbsp;<strong>Open to All Ages</strong></p>
+        <div class="d4-ev-rule"></div>
+        <button class="d4-ev-btn">Register Now</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── S6: MEMBERSHIP ── -->
+  <section class="d4-mem">
+    <div class="d4-mem-top d4-fade">
+      <div class="d4-mem-ey"><span class="d4-mem-ey-line"></span><span class="d4-mem-ey-txt">Membership</span><span class="d4-mem-ey-line"></span></div>
+      <h2 class="d4-mem-title">Choose Your Tier</h2>
+      <p class="d4-mem-sub">In mahjong every set tells a story. Which tier will you play?</p>
+    </div>
+    <div class="d4-mem-cards">
+
+      <!-- PEARL -->
+      <div class="d4-mc pearl">
+        <div class="d4-mc-top">
+          <div class="d4-tile-svg-wrap"><svg width="220" height="136" viewBox="0 0 220 136" fill="none" xmlns="http://www.w3.org/2000/svg"><g transform="translate(80,0)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#8B6020" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#8B6020" stroke-width="0.55" fill="none"/><rect x="4.5" y="5" width="9" height="14" rx="1" stroke="#8B6020" stroke-width="0.8" fill="none"/></g><g transform="translate(101,0)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#8B6020" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#8B6020" stroke-width="0.55" fill="none"/><rect x="4.5" y="5" width="9" height="14" rx="1" stroke="#8B6020" stroke-width="0.8" fill="none"/></g><g transform="translate(122,0)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#8B6020" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#8B6020" stroke-width="0.55" fill="none"/><rect x="4.5" y="5" width="9" height="14" rx="1" stroke="#8B6020" stroke-width="0.8" fill="none"/></g><g transform="translate(80,27)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#8B6020" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#8B6020" stroke-width="0.55" fill="none"/><circle cx="9" cy="5" r="1.9" fill="#8B6020"/><circle cx="4" cy="12" r="1.9" fill="#8B6020"/><circle cx="9" cy="12" r="1.9" fill="#8B6020"/><circle cx="14" cy="12" r="1.9" fill="#8B6020"/><circle cx="9" cy="19" r="1.9" fill="#8B6020"/></g><g transform="translate(101,27)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#8B6020" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#8B6020" stroke-width="0.55" fill="none"/><circle cx="9" cy="5" r="1.9" fill="#8B6020"/><circle cx="4" cy="12" r="1.9" fill="#8B6020"/><circle cx="9" cy="12" r="1.9" fill="#8B6020"/><circle cx="14" cy="12" r="1.9" fill="#8B6020"/><circle cx="9" cy="19" r="1.9" fill="#8B6020"/></g><g transform="translate(122,27)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#8B6020" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#8B6020" stroke-width="0.55" fill="none"/><circle cx="9" cy="5" r="1.9" fill="#8B6020"/><circle cx="4" cy="12" r="1.9" fill="#8B6020"/><circle cx="9" cy="12" r="1.9" fill="#8B6020"/><circle cx="14" cy="12" r="1.9" fill="#8B6020"/><circle cx="9" cy="19" r="1.9" fill="#8B6020"/></g><g transform="translate(80,54)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#8B6020" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#8B6020" stroke-width="0.55" fill="none"/><circle cx="5" cy="6" r="1.4" fill="#8B6020"/><circle cx="9" cy="6" r="1.4" fill="#8B6020"/><circle cx="13" cy="6" r="1.4" fill="#8B6020"/><circle cx="5" cy="12" r="1.4" fill="#8B6020"/><circle cx="9" cy="12" r="1.4" fill="#8B6020"/><circle cx="13" cy="12" r="1.4" fill="#8B6020"/><circle cx="5" cy="18" r="1.4" fill="#8B6020"/><circle cx="9" cy="18" r="1.4" fill="#8B6020"/><circle cx="13" cy="18" r="1.4" fill="#8B6020"/></g><g transform="translate(101,54)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#8B6020" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#8B6020" stroke-width="0.55" fill="none"/><circle cx="5" cy="6" r="1.4" fill="#8B6020"/><circle cx="9" cy="6" r="1.4" fill="#8B6020"/><circle cx="13" cy="6" r="1.4" fill="#8B6020"/><circle cx="5" cy="12" r="1.4" fill="#8B6020"/><circle cx="9" cy="12" r="1.4" fill="#8B6020"/><circle cx="13" cy="12" r="1.4" fill="#8B6020"/><circle cx="5" cy="18" r="1.4" fill="#8B6020"/><circle cx="9" cy="18" r="1.4" fill="#8B6020"/><circle cx="13" cy="18" r="1.4" fill="#8B6020"/></g><g transform="translate(122,54)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#8B6020" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#8B6020" stroke-width="0.55" fill="none"/><circle cx="5" cy="6" r="1.4" fill="#8B6020"/><circle cx="9" cy="6" r="1.4" fill="#8B6020"/><circle cx="13" cy="6" r="1.4" fill="#8B6020"/><circle cx="5" cy="12" r="1.4" fill="#8B6020"/><circle cx="9" cy="12" r="1.4" fill="#8B6020"/><circle cx="13" cy="12" r="1.4" fill="#8B6020"/><circle cx="5" cy="18" r="1.4" fill="#8B6020"/><circle cx="9" cy="18" r="1.4" fill="#8B6020"/><circle cx="13" cy="18" r="1.4" fill="#8B6020"/></g><g transform="translate(80,81)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#8B6020" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#8B6020" stroke-width="0.55" fill="none"/><circle cx="9" cy="6" r="2.4" fill="#8B6020"/><circle cx="9" cy="12" r="2.4" fill="#8B6020"/><circle cx="9" cy="18" r="2.4" fill="#8B6020"/></g><g transform="translate(101,81)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#8B6020" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#8B6020" stroke-width="0.55" fill="none"/><circle cx="9" cy="6" r="2.4" fill="#8B6020"/><circle cx="9" cy="12" r="2.4" fill="#8B6020"/><circle cx="9" cy="18" r="2.4" fill="#8B6020"/></g><g transform="translate(122,81)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#8B6020" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#8B6020" stroke-width="0.55" fill="none"/><circle cx="9" cy="6" r="2.4" fill="#8B6020"/><circle cx="9" cy="12" r="2.4" fill="#8B6020"/><circle cx="9" cy="18" r="2.4" fill="#8B6020"/></g><g transform="translate(90,108)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#8B6020" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#8B6020" stroke-width="0.55" fill="none"/><circle cx="9" cy="12" r="5.5" stroke="#8B6020" stroke-width="0.8" fill="none"/><circle cx="9" cy="12" r="2.5" fill="#8B6020"/></g><g transform="translate(111,108)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#8B6020" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#8B6020" stroke-width="0.55" fill="none"/><circle cx="9" cy="12" r="5.5" stroke="#8B6020" stroke-width="0.8" fill="none"/><circle cx="9" cy="12" r="2.5" fill="#8B6020"/></g></svg></div>
+          <div class="d4-hand-badge">The Pearl Tier</div>
+        </div>
+        <div class="d4-mc-body">
+          <div class="d4-hand-name">Pearl Tier</div>
+          <div class="d4-hand-tag">Every master begins with a clean hand</div>
+          <div class="d4-c-divider"></div>
+          <div class="d4-c-tier">1 Year Membership</div>
+          <div class="d4-c-price"><sup class="d4-rs">&#8377;</sup>1,000</div>
+          <div class="d4-c-period">Per year, renews annually</div>
+          <ul class="d4-feats">
+            <li>Access to 2 events per year</li>
+            <li>Digital membership card</li>
+            <li>Monthly newsletter</li>
+            <li>Member community access</li>
+          </ul>
+        </div>
+        <button class="d4-c-btn">Play the Pearl</button>
+      </div>
+
+      <!-- RUBY -->
+      <div class="d4-mc ruby">
+        <div class="d4-mc-top">
+          <div class="d4-bv-bar">&#9733; Best Value</div>
+          <div class="d4-tile-svg-wrap"><svg width="220" height="136" viewBox="0 0 220 136" fill="none" xmlns="http://www.w3.org/2000/svg"><g transform="translate(80,0)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#C87070" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#C87070" stroke-width="0.55" fill="none"/><text x="9" y="17" text-anchor="middle" font-size="12" font-family="serif" fill="#C87070">中</text></g><g transform="translate(101,0)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#C87070" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#C87070" stroke-width="0.55" fill="none"/><text x="9" y="17" text-anchor="middle" font-size="12" font-family="serif" fill="#C87070">中</text></g><g transform="translate(122,0)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#C87070" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#C87070" stroke-width="0.55" fill="none"/><text x="9" y="17" text-anchor="middle" font-size="12" font-family="serif" fill="#C87070">中</text></g><g transform="translate(80,27)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#C87070" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#C87070" stroke-width="0.55" fill="none"/><text x="9" y="12" text-anchor="middle" font-size="9" font-family="serif" fill="#C87070">萬</text><text x="9" y="21" text-anchor="middle" font-size="7" font-family="serif" fill="#C87070">七</text></g><g transform="translate(101,27)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#C87070" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#C87070" stroke-width="0.55" fill="none"/><text x="9" y="12" text-anchor="middle" font-size="9" font-family="serif" fill="#C87070">萬</text><text x="9" y="21" text-anchor="middle" font-size="7" font-family="serif" fill="#C87070">七</text></g><g transform="translate(122,27)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#C87070" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#C87070" stroke-width="0.55" fill="none"/><text x="9" y="12" text-anchor="middle" font-size="9" font-family="serif" fill="#C87070">萬</text><text x="9" y="21" text-anchor="middle" font-size="7" font-family="serif" fill="#C87070">七</text></g><g transform="translate(80,54)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#C87070" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#C87070" stroke-width="0.55" fill="none"/><text x="9" y="12" text-anchor="middle" font-size="9" font-family="serif" fill="#C87070">萬</text><text x="9" y="21" text-anchor="middle" font-size="7" font-family="serif" fill="#C87070">三</text></g><g transform="translate(101,54)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#C87070" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#C87070" stroke-width="0.55" fill="none"/><text x="9" y="12" text-anchor="middle" font-size="9" font-family="serif" fill="#C87070">萬</text><text x="9" y="21" text-anchor="middle" font-size="7" font-family="serif" fill="#C87070">三</text></g><g transform="translate(122,54)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#C87070" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#C87070" stroke-width="0.55" fill="none"/><text x="9" y="12" text-anchor="middle" font-size="9" font-family="serif" fill="#C87070">萬</text><text x="9" y="21" text-anchor="middle" font-size="7" font-family="serif" fill="#C87070">三</text></g><g transform="translate(80,81)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#C87070" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#C87070" stroke-width="0.55" fill="none"/><text x="9" y="12" text-anchor="middle" font-size="9" font-family="serif" fill="#C87070">萬</text><text x="9" y="21" text-anchor="middle" font-size="7" font-family="serif" fill="#C87070">九</text></g><g transform="translate(101,81)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#C87070" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#C87070" stroke-width="0.55" fill="none"/><text x="9" y="12" text-anchor="middle" font-size="9" font-family="serif" fill="#C87070">萬</text><text x="9" y="21" text-anchor="middle" font-size="7" font-family="serif" fill="#C87070">九</text></g><g transform="translate(122,81)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#C87070" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#C87070" stroke-width="0.55" fill="none"/><text x="9" y="12" text-anchor="middle" font-size="9" font-family="serif" fill="#C87070">萬</text><text x="9" y="21" text-anchor="middle" font-size="7" font-family="serif" fill="#C87070">九</text></g><g transform="translate(90,108)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#C87070" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#C87070" stroke-width="0.55" fill="none"/><text x="9" y="12" text-anchor="middle" font-size="9" font-family="serif" fill="#C87070">二</text><text x="9" y="21" text-anchor="middle" font-size="7" font-family="serif" fill="#C87070">萬</text></g><g transform="translate(111,108)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#C87070" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#C87070" stroke-width="0.55" fill="none"/><text x="9" y="12" text-anchor="middle" font-size="9" font-family="serif" fill="#C87070">二</text><text x="9" y="21" text-anchor="middle" font-size="7" font-family="serif" fill="#C87070">萬</text></g></svg></div>
+          <div class="d4-hand-badge">The Ruby Tier</div>
+        </div>
+        <div class="d4-mc-body">
+          <div class="d4-hand-name">Ruby Tier</div>
+          <div class="d4-hand-tag">The fire of someone who plays with purpose</div>
+          <div class="d4-c-divider"></div>
+          <div class="d4-c-tier">5 Year Membership</div>
+          <div class="d4-c-price"><sup class="d4-rs">&#8377;</sup>4,000</div>
+          <div class="d4-c-period">5 years, save &#8377;1,000 vs annual</div>
+          <ul class="d4-feats">
+            <li>Everything in Pearl</li>
+            <li>VIP invites to 10 game sessions per year</li>
+            <li>Priority event booking</li>
+            <li>4 guest passes per year</li>
+          </ul>
+        </div>
+        <button class="d4-c-btn">Play the Ruby</button>
+      </div>
+
+      <!-- JADE -->
+      <div class="d4-mc jade">
+        <div class="d4-mc-top">
+          <div class="d4-tile-svg-wrap"><svg width="220" height="136" viewBox="0 0 220 136" fill="none" xmlns="http://www.w3.org/2000/svg"><g transform="translate(80,0)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#5DB86A" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#5DB86A" stroke-width="0.55" fill="none"/><text x="9" y="17" text-anchor="middle" font-size="12" font-family="serif" fill="#5DB86A">發</text></g><g transform="translate(101,0)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#5DB86A" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#5DB86A" stroke-width="0.55" fill="none"/><text x="9" y="17" text-anchor="middle" font-size="12" font-family="serif" fill="#5DB86A">發</text></g><g transform="translate(122,0)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#5DB86A" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#5DB86A" stroke-width="0.55" fill="none"/><text x="9" y="17" text-anchor="middle" font-size="12" font-family="serif" fill="#5DB86A">發</text></g><g transform="translate(80,27)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#5DB86A" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#5DB86A" stroke-width="0.55" fill="none"/><rect x="4.25" y="4" width="2.5" height="15" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="4.25" y1="10.75" x2="6.75" y2="10.75" stroke="#5DB86A" stroke-width="0.5"/><line x1="5.5" y1="4" x2="7.5" y2="2" stroke="#5DB86A" stroke-width="0.5"/><rect x="11.25" y="4" width="2.5" height="15" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="11.25" y1="10.75" x2="13.75" y2="10.75" stroke="#5DB86A" stroke-width="0.5"/><line x1="12.5" y1="4" x2="14.5" y2="2" stroke="#5DB86A" stroke-width="0.5"/></g><g transform="translate(101,27)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#5DB86A" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#5DB86A" stroke-width="0.55" fill="none"/><rect x="4.25" y="4" width="2.5" height="15" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="4.25" y1="10.75" x2="6.75" y2="10.75" stroke="#5DB86A" stroke-width="0.5"/><line x1="5.5" y1="4" x2="7.5" y2="2" stroke="#5DB86A" stroke-width="0.5"/><rect x="11.25" y="4" width="2.5" height="15" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="11.25" y1="10.75" x2="13.75" y2="10.75" stroke="#5DB86A" stroke-width="0.5"/><line x1="12.5" y1="4" x2="14.5" y2="2" stroke="#5DB86A" stroke-width="0.5"/></g><g transform="translate(122,27)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#5DB86A" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#5DB86A" stroke-width="0.55" fill="none"/><rect x="4.25" y="4" width="2.5" height="15" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="4.25" y1="10.75" x2="6.75" y2="10.75" stroke="#5DB86A" stroke-width="0.5"/><line x1="5.5" y1="4" x2="7.5" y2="2" stroke="#5DB86A" stroke-width="0.5"/><rect x="11.25" y="4" width="2.5" height="15" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="11.25" y1="10.75" x2="13.75" y2="10.75" stroke="#5DB86A" stroke-width="0.5"/><line x1="12.5" y1="4" x2="14.5" y2="2" stroke="#5DB86A" stroke-width="0.5"/></g><g transform="translate(80,54)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#5DB86A" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#5DB86A" stroke-width="0.55" fill="none"/><rect x="4.25" y="4" width="2.5" height="7" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="4.25" y1="7" x2="6.75" y2="7" stroke="#5DB86A" stroke-width="0.5"/><line x1="5.5" y1="4" x2="7.5" y2="2" stroke="#5DB86A" stroke-width="0.5"/><rect x="11.25" y="4" width="2.5" height="7" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="11.25" y1="7" x2="13.75" y2="7" stroke="#5DB86A" stroke-width="0.5"/><line x1="12.5" y1="4" x2="14.5" y2="2" stroke="#5DB86A" stroke-width="0.5"/><rect x="4.25" y="13" width="2.5" height="7" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="4.25" y1="16" x2="6.75" y2="16" stroke="#5DB86A" stroke-width="0.5"/><rect x="11.25" y="13" width="2.5" height="7" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="11.25" y1="16" x2="13.75" y2="16" stroke="#5DB86A" stroke-width="0.5"/></g><g transform="translate(101,54)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#5DB86A" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#5DB86A" stroke-width="0.55" fill="none"/><rect x="4.25" y="4" width="2.5" height="7" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="4.25" y1="7" x2="6.75" y2="7" stroke="#5DB86A" stroke-width="0.5"/><line x1="5.5" y1="4" x2="7.5" y2="2" stroke="#5DB86A" stroke-width="0.5"/><rect x="11.25" y="4" width="2.5" height="7" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="11.25" y1="7" x2="13.75" y2="7" stroke="#5DB86A" stroke-width="0.5"/><line x1="12.5" y1="4" x2="14.5" y2="2" stroke="#5DB86A" stroke-width="0.5"/><rect x="4.25" y="13" width="2.5" height="7" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="4.25" y1="16" x2="6.75" y2="16" stroke="#5DB86A" stroke-width="0.5"/><rect x="11.25" y="13" width="2.5" height="7" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="11.25" y1="16" x2="13.75" y2="16" stroke="#5DB86A" stroke-width="0.5"/></g><g transform="translate(122,54)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#5DB86A" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#5DB86A" stroke-width="0.55" fill="none"/><rect x="4.25" y="4" width="2.5" height="7" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="4.25" y1="7" x2="6.75" y2="7" stroke="#5DB86A" stroke-width="0.5"/><line x1="5.5" y1="4" x2="7.5" y2="2" stroke="#5DB86A" stroke-width="0.5"/><rect x="11.25" y="4" width="2.5" height="7" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="11.25" y1="7" x2="13.75" y2="7" stroke="#5DB86A" stroke-width="0.5"/><line x1="12.5" y1="4" x2="14.5" y2="2" stroke="#5DB86A" stroke-width="0.5"/><rect x="4.25" y="13" width="2.5" height="7" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="4.25" y1="16" x2="6.75" y2="16" stroke="#5DB86A" stroke-width="0.5"/><rect x="11.25" y="13" width="2.5" height="7" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="11.25" y1="16" x2="13.75" y2="16" stroke="#5DB86A" stroke-width="0.5"/></g><g transform="translate(80,81)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#5DB86A" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#5DB86A" stroke-width="0.55" fill="none"/><rect x="4.25" y="3" width="2.5" height="5" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="4.25" y1="5.5" x2="6.75" y2="5.5" stroke="#5DB86A" stroke-width="0.5"/><rect x="11.25" y="3" width="2.5" height="5" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="11.25" y1="5.5" x2="13.75" y2="5.5" stroke="#5DB86A" stroke-width="0.5"/><rect x="4.25" y="10" width="2.5" height="5" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="4.25" y1="12.5" x2="6.75" y2="12.5" stroke="#5DB86A" stroke-width="0.5"/><rect x="11.25" y="10" width="2.5" height="5" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="11.25" y1="12.5" x2="13.75" y2="12.5" stroke="#5DB86A" stroke-width="0.5"/><rect x="4.25" y="17" width="2.5" height="5" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="4.25" y1="19.5" x2="6.75" y2="19.5" stroke="#5DB86A" stroke-width="0.5"/><rect x="11.25" y="17" width="2.5" height="5" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="11.25" y1="19.5" x2="13.75" y2="19.5" stroke="#5DB86A" stroke-width="0.5"/></g><g transform="translate(101,81)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#5DB86A" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#5DB86A" stroke-width="0.55" fill="none"/><rect x="4.25" y="3" width="2.5" height="5" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="4.25" y1="5.5" x2="6.75" y2="5.5" stroke="#5DB86A" stroke-width="0.5"/><rect x="11.25" y="3" width="2.5" height="5" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="11.25" y1="5.5" x2="13.75" y2="5.5" stroke="#5DB86A" stroke-width="0.5"/><rect x="4.25" y="10" width="2.5" height="5" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="4.25" y1="12.5" x2="6.75" y2="12.5" stroke="#5DB86A" stroke-width="0.5"/><rect x="11.25" y="10" width="2.5" height="5" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="11.25" y1="12.5" x2="13.75" y2="12.5" stroke="#5DB86A" stroke-width="0.5"/><rect x="4.25" y="17" width="2.5" height="5" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="4.25" y1="19.5" x2="6.75" y2="19.5" stroke="#5DB86A" stroke-width="0.5"/><rect x="11.25" y="17" width="2.5" height="5" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="11.25" y1="19.5" x2="13.75" y2="19.5" stroke="#5DB86A" stroke-width="0.5"/></g><g transform="translate(122,81)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#5DB86A" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#5DB86A" stroke-width="0.55" fill="none"/><rect x="4.25" y="3" width="2.5" height="5" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="4.25" y1="5.5" x2="6.75" y2="5.5" stroke="#5DB86A" stroke-width="0.5"/><rect x="11.25" y="3" width="2.5" height="5" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="11.25" y1="5.5" x2="13.75" y2="5.5" stroke="#5DB86A" stroke-width="0.5"/><rect x="4.25" y="10" width="2.5" height="5" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="4.25" y1="12.5" x2="6.75" y2="12.5" stroke="#5DB86A" stroke-width="0.5"/><rect x="11.25" y="10" width="2.5" height="5" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="11.25" y1="12.5" x2="13.75" y2="12.5" stroke="#5DB86A" stroke-width="0.5"/><rect x="4.25" y="17" width="2.5" height="5" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="4.25" y1="19.5" x2="6.75" y2="19.5" stroke="#5DB86A" stroke-width="0.5"/><rect x="11.25" y="17" width="2.5" height="5" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="11.25" y1="19.5" x2="13.75" y2="19.5" stroke="#5DB86A" stroke-width="0.5"/></g><g transform="translate(90,108)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#5DB86A" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#5DB86A" stroke-width="0.55" fill="none"/><rect x="4.25" y="4" width="2.5" height="15" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="4.25" y1="10.75" x2="6.75" y2="10.75" stroke="#5DB86A" stroke-width="0.5"/><line x1="5.5" y1="4" x2="7.5" y2="2" stroke="#5DB86A" stroke-width="0.5"/><rect x="11.25" y="4" width="2.5" height="15" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="11.25" y1="10.75" x2="13.75" y2="10.75" stroke="#5DB86A" stroke-width="0.5"/><line x1="12.5" y1="4" x2="14.5" y2="2" stroke="#5DB86A" stroke-width="0.5"/></g><g transform="translate(111,108)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#5DB86A" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#5DB86A" stroke-width="0.55" fill="none"/><rect x="4.25" y="4" width="2.5" height="15" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="4.25" y1="10.75" x2="6.75" y2="10.75" stroke="#5DB86A" stroke-width="0.5"/><line x1="5.5" y1="4" x2="7.5" y2="2" stroke="#5DB86A" stroke-width="0.5"/><rect x="11.25" y="4" width="2.5" height="15" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="11.25" y1="10.75" x2="13.75" y2="10.75" stroke="#5DB86A" stroke-width="0.5"/><line x1="12.5" y1="4" x2="14.5" y2="2" stroke="#5DB86A" stroke-width="0.5"/></g></svg></div>
+          <div class="d4-hand-badge">The Jade Tier</div>
+        </div>
+        <div class="d4-mc-body">
+          <div class="d4-hand-name">Jade Tier</div>
+          <div class="d4-hand-tag">The rarest hand. For those who commit fully.</div>
+          <div class="d4-c-divider"></div>
+          <div class="d4-c-tier">Lifetime Membership</div>
+          <div class="d4-c-price"><sup class="d4-rs">&#8377;</sup>10,000</div>
+          <div class="d4-c-period">Once, always a member, founding status</div>
+          <ul class="d4-feats">
+            <li>Everything in Ruby</li>
+            <li>IMA mahjong mat (yours to keep)</li>
+            <li>Exclusive merchandise pack</li>
+            <li>Founding member certificate</li>
+          </ul>
+        </div>
+        <button class="d4-c-btn">Play the Jade</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── S7: SOCIAL ── -->
+  <section class="d4-social">
+    <h2 class="d4-social-title d4-fade">Follow Our Journey</h2>
+    <p class="d4-social-sub d4-fade">Tiles, tournaments and the people who love the game.</p>
+    <div class="d4-insta-grid d4-fade">
+      <div class="d4-ig"><svg viewBox="0 0 28 42" fill="none" stroke="#F5C87A" stroke-width="1.1" style="width:28px;height:42px;"><use href="#t-bamboo"/></svg></div>
+      <div class="d4-ig"><svg viewBox="0 0 28 42" fill="none" stroke="#F5C87A" stroke-width="1.1" style="width:28px;height:42px;"><use href="#t-circle"/></svg></div>
+      <div class="d4-ig"><svg viewBox="0 0 28 42" fill="none" stroke="#F5C87A" stroke-width="1.1" style="width:28px;height:42px;"><use href="#t-char"/></svg></div>
+      <div class="d4-ig"><svg viewBox="0 0 28 42" fill="none" stroke="#F5C87A" stroke-width="1.1" style="width:28px;height:42px;"><use href="#t-wind"/></svg></div>
+      <div class="d4-ig"><svg viewBox="0 0 28 42" fill="none" stroke="#F5C87A" stroke-width="1.1" style="width:28px;height:42px;"><use href="#t-dragon"/></svg></div>
+      <div class="d4-ig"><svg viewBox="0 0 28 42" fill="none" stroke="#F5C87A" stroke-width="1.1" style="width:28px;height:42px;"><use href="#t-bamboo"/></svg></div>
+    </div>
+    <p class="d4-social-handle d4-fade">@<span>indianmahjongassociation</span></p>
+    <button class="d4-social-btn d4-fade">Follow on Instagram</button>
+  </section>
+
+  <!-- ── S8: FOOTER ── -->
+  <footer class="d4-footer">
+    <div class="d4-foot-main">
+      <div class="d4-foot-logo">IMA</div>
+      <div class="d4-foot-tag">India's authentic mahjong community</div>
+      <div class="d4-foot-socials">
+        <div class="d4-foot-si" title="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </div>
+        <div class="d4-foot-si" title="Facebook">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        </div>
+        <div class="d4-foot-si" title="YouTube">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="3"/><polygon points="10,9 16,12 10,15" fill="currentColor" stroke="none"/></svg>
+        </div>
+      </div>
+    </div>
+    <div class="d4-foot-bar">
+      <p class="d4-foot-copy">&copy; 2024 Indian Mahjong Association. All rights reserved.</p>
+      <p class="d4-foot-rzp">Payments secured by <span>Razorpay</span></p>
+    </div>
+  </footer>
+
+</div>
+
+<style>
+/* ── D5 BASE ── */
+.d5{background:#3E0C0C;color:#FAF0E8;font-family:Helvetica,Arial,sans-serif;overflow-x:hidden;width:100%;}
+
+/* ── D5 NAV ── */
+.d5-nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:22px 64px;background:rgba(20,3,3,.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(245,200,122,.1);transition:transform .28s ease,box-shadow .28s ease;}
+.d5-nav.nav-hidden{transform:translateY(-100%);}
+.d5-nav.nav-raised{box-shadow:0 16px 34px rgba(0,0,0,.22);}
+.d5-logo-main{font-family:'Cormorant Garant',Georgia,serif;font-size:24px;font-weight:600;letter-spacing:.2em;color:#F5C87A;line-height:1;}
+.d5-logo-sub{font-size:8.5px;letter-spacing:.28em;text-transform:uppercase;color:rgba(250,240,232,.38);margin-top:4px;}
+.d5-nav-links{display:flex;gap:32px;list-style:none;align-items:center;}
+.d5-nav-links a{text-decoration:none;color:rgba(250,240,232,.5);font-size:10px;letter-spacing:.22em;text-transform:uppercase;transition:color .15s;}
+.d5-nav-links a:hover{color:#F5C87A;}
+
+/* ── D4 HERO ── */
+@keyframes d4show{from{opacity:0;}to{opacity:1;}}
+@keyframes d4drift1{0%,100%{transform:translate(0,0) rotate(-3deg);}50%{transform:translate(22px,-18px) rotate(5deg);}}
+@keyframes d4drift2{0%,100%{transform:translate(0,0) rotate(7deg);}50%{transform:translate(-20px,26px) rotate(-5deg);}}
+@keyframes d4drift3{0%,100%{transform:translate(0,0) rotate(-6deg);}33%{transform:translate(16px,10px) rotate(2deg);}66%{transform:translate(-12px,-18px) rotate(-8deg);}}
+@keyframes d4drift4{0%,100%{transform:translate(0,0) rotate(3deg);}50%{transform:translate(-28px,12px) rotate(9deg);}}
+@keyframes d4herofade{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:none;}}
+
+.d5-hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;text-align:center;}
+.d5-hero-tiles{position:absolute;inset:0;pointer-events:none;}
+.d5-ht{position:absolute;opacity:0;}
+.d5-ht.s1{top:5%;left:3%;color:rgba(245,200,122,.14);animation:d4show .9s ease .2s both,d4drift1 18s ease-in-out 1.2s infinite;}
+.d5-ht.s2{top:9%;right:6%;color:rgba(245,200,122,.1);animation:d4show .9s ease .5s both,d4drift2 23s ease-in-out 1.5s infinite;}
+.d5-ht.s3{top:32%;left:1%;color:rgba(245,200,122,.12);animation:d4show .9s ease .8s both,d4drift3 26s ease-in-out 1.8s infinite;}
+.d5-ht.s4{top:48%;right:2%;color:rgba(245,200,122,.09);animation:d4show .9s ease .4s both,d4drift4 21s ease-in-out 1.3s infinite;}
+.d5-ht.s5{top:68%;left:8%;color:rgba(245,200,122,.13);animation:d4show .9s ease .7s both,d4drift2 16s ease-in-out 1.6s infinite;}
+.d5-ht.s6{top:72%;right:9%;color:rgba(245,200,122,.1);animation:d4show .9s ease 1s both,d4drift1 24s ease-in-out 2s infinite;}
+.d5-ht.s7{top:20%;left:18%;color:rgba(245,200,122,.06);animation:d4show .9s ease .3s both,d4drift4 29s ease-in-out 1.4s infinite;}
+.d5-ht.s8{top:54%;right:18%;color:rgba(245,200,122,.06);animation:d4show .9s ease .9s both,d4drift3 20s ease-in-out 1.9s infinite;}
+.d5-ht.s9{top:84%;left:38%;color:rgba(245,200,122,.11);animation:d4show .9s ease .6s both,d4drift2 17s ease-in-out 1.7s infinite;}
+.d5-ht.s10{top:4%;left:52%;color:rgba(245,200,122,.07);animation:d4show .9s ease 1.1s both,d4drift1 22s ease-in-out 2.1s infinite;}
+.d5-ht.s11{top:40%;left:30%;color:rgba(245,200,122,.04);animation:d4show .9s ease 1.3s both,d4drift3 32s ease-in-out 2.3s infinite;}
+.d5-ht.s12{top:60%;right:30%;color:rgba(245,200,122,.04);animation:d4show .9s ease 1.5s both,d4drift4 27s ease-in-out 2.5s infinite;}
+
+.d5-hero-content{position:relative;z-index:2;max-width:780px;padding:0 40px;animation:d4herofade 1.3s ease .2s both;}
+.d5-hero-ey{font-size:10px;letter-spacing:.35em;text-transform:uppercase;color:#F5C87A;display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:28px;}
+.d5-hero-ey-line{width:32px;height:1px;background:#F5C87A;}
+.d5-hero-h1{font-family:'Cormorant Garant',Georgia,serif;font-size:clamp(50px,6vw,86px);font-weight:300;font-style:normal;line-height:1.05;color:#FAF0E8;margin-bottom:24px;}
+.d5-hero-sub{font-size:16px;line-height:1.85;color:rgba(250,240,232,.62);max-width:520px;margin:0 auto 44px;}
+.d5-hero-cta{padding:15px 42px;background:#F5C87A;color:#3E0C0C;border:none;font-family:Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;cursor:pointer;transition:all .18s;}
+.d5-hero-cta:hover{background:#fff;}
+.d5-hero-scroll{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(250,240,232,.28);font-size:9px;letter-spacing:.2em;text-transform:uppercase;}
+.d5-scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,rgba(245,200,122,.4),transparent);}
+
+/* ── FADE ON SCROLL ── */
+.d5-fade{opacity:0;transform:translateY(36px);transition:opacity .8s ease,transform .8s ease;}
+.d5-fade.visible{opacity:1;transform:none;}
+.d5-fd1{transition-delay:.1s;}.d5-fd2{transition-delay:.2s;}.d5-fd3{transition-delay:.3s;}.d5-fd4{transition-delay:.4s;}.d5-fd5{transition-delay:.5s;}
+
+/* ── SECTION COMMON ── */
+.d5-sec-ey{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#F5C87A;display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.d5-sec-ey-line{width:26px;height:1px;background:#F5C87A;}
+.d5-sec-title{font-family:'Cormorant Garant',Georgia,serif;font-size:clamp(34px,3.5vw,52px);font-weight:300;color:#FAF0E8;margin-bottom:16px;}
+
+/* ── STORY ── */
+.d5-story{display:grid;grid-template-columns:1fr 1fr;gap:80px;padding:100px 64px;align-items:center;}
+.d5-story-art{position:relative;height:540px;overflow:hidden;border:1px solid rgba(245,200,122,.14);background:#1a0606;}
+.d5-story-photo{width:100%;height:100%;object-fit:contain;object-position:center center;display:block;}
+.d5-story-art-svg{position:absolute;inset:0;width:100%;height:100%;color:rgba(250,240,232,.13);pointer-events:none;}
+.d5-story-caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(42,8,8,1) 55%,transparent);padding:64px 28px 24px;}
+.d5-story-fn{font-family:'Cormorant Garant',Georgia,serif;font-size:20px;font-weight:400;letter-spacing:.06em;color:#FAF0E8;}
+.d5-story-fr{font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:#F5C87A;margin-top:5px;}
+.d5-story-rule{width:32px;height:1.5px;background:#F5C87A;margin-bottom:24px;}
+.d5-story-h2{font-family:'Cormorant Garant',Georgia,serif;font-size:clamp(34px,3.5vw,52px);font-weight:300;line-height:1.1;color:#FAF0E8;margin-bottom:30px;}
+.d5-story-h2 em{font-style:italic;color:#F5C87A;}
+.d5-story-p{font-size:15px;line-height:2.05;color:rgba(250,240,232,.65);margin-bottom:18px;}
+.d5-story-sig{margin-top:32px;font-family:'Cormorant Garant',Georgia,serif;font-size:28px;font-style:italic;color:rgba(245,200,122,.6);}
+
+/* ── WHAT MAKES IMA DIFFERENT ── */
+.d5-diff{padding:100px 64px;background:rgba(0,0,0,.18);}
+.d5-diff-head{text-align:center;margin-bottom:60px;}
+.d5-diff-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:960px;margin:0 auto;}
+.d5-diff-card{background:rgba(250,240,232,.045);border:1px solid rgba(245,200,122,.1);padding:40px 32px;transition:background .2s,border-color .2s;}
+.d5-diff-card:hover{background:rgba(250,240,232,.08);border-color:rgba(245,200,122,.35);}
+.d5-diff-icon{width:44px;height:62px;color:rgba(245,200,122,.55);margin-bottom:22px;}
+.d5-diff-card-h{font-family:'Cormorant Garant',Georgia,serif;font-size:24px;font-weight:400;color:#FAF0E8;margin-bottom:12px;}
+.d5-diff-card-p{font-size:13px;line-height:1.85;color:rgba(250,240,232,.56);}
+
+/* ── TRAINERS ── */
+.d5-trainers{padding:100px 64px;}
+.d5-trainers-head{text-align:center;margin-bottom:56px;}
+.d5-trainers-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;max-width:1040px;margin:0 auto;}
+.d5-tw{perspective:1200px;height:320px;cursor:pointer;}
+.d5-ti{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .65s cubic-bezier(.4,0,.2,1);}
+.d5-tw:hover .d5-ti{transform:rotateY(180deg);}
+.d5-tf,.d5-tb{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:7px;display:flex;flex-direction:column;align-items:center;padding:22px 14px 18px;}
+.d5-tf{background:#FAF0E8;border:2px solid rgba(62,12,12,.12);justify-content:flex-start;}
+.d5-tb{background:#2A0808;border:1.5px solid rgba(245,200,122,.28);transform:rotateY(180deg);justify-content:center;gap:10px;}
+.d5-tphoto{width:72px;height:72px;border-radius:50%;background:rgba(62,12,12,.08);border:1.5px solid rgba(62,12,12,.15);display:flex;align-items:center;justify-content:center;margin-bottom:14px;overflow:hidden;}
+.d5-tphoto svg{color:rgba(62,12,12,.28);width:36px;height:36px;}
+.d5-tname{font-family:'Cormorant Garant',Georgia,serif;font-size:16px;font-weight:500;color:#3E0C0C;text-align:center;margin-bottom:4px;}
+.d5-tcity{font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(62,12,12,.45);margin-bottom:10px;}
+.d5-tspec{font-size:11px;color:rgba(62,12,12,.58);text-align:center;border-top:1px solid rgba(62,12,12,.1);padding-top:10px;width:100%;line-height:1.5;}
+.d5-tile-deco{margin-top:auto;color:rgba(62,12,12,.1);}
+.d5-tb-name{font-family:'Cormorant Garant',Georgia,serif;font-size:17px;color:#F5C87A;text-align:center;}
+.d5-tb-rule{width:22px;height:1px;background:rgba(245,200,122,.4);}
+.d5-tb-bio{font-size:11.5px;line-height:1.75;color:rgba(250,240,232,.7);text-align:center;}
+.d5-hover-hint{font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(62,12,12,.3);margin-top:auto;}
+
+/* ── EVENTS ── */
+.d5-events{padding:100px 64px;background:rgba(0,0,0,.12);}
+.d5-events-head{margin-bottom:52px;}
+.d5-events-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:960px;}
+.d5-ev{border:1px solid rgba(245,200,122,.18);padding:32px 28px;position:relative;transition:border-color .2s,background .2s;}
+.d5-ev:hover{border-color:rgba(245,200,122,.45);background:rgba(245,200,122,.03);}
+.d5-ev-badge{display:inline-block;font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;padding:4px 10px;margin-bottom:20px;}
+.d5-ev-badge.tr{background:rgba(245,200,122,.14);color:#F5C87A;}
+.d5-ev-badge.tm{background:rgba(196,98,45,.2);color:#e07a4a;}
+.d5-ev-name{font-family:'Cormorant Garant',Georgia,serif;font-size:22px;font-weight:400;color:#FAF0E8;margin-bottom:12px;line-height:1.2;}
+.d5-ev-meta{font-size:11px;color:rgba(250,240,232,.42);margin-bottom:5px;letter-spacing:.03em;}
+.d5-ev-meta strong{color:rgba(250,240,232,.68);}
+.d5-ev-rule{width:100%;height:1px;background:rgba(245,200,122,.1);margin:20px 0;}
+.d5-ev-btn{padding:10px 22px;border:1px solid rgba(245,200,122,.38);background:transparent;color:#F5C87A;font-family:Helvetica,Arial,sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:all .18s;}
+.d5-ev-btn:hover{background:#F5C87A;color:#3E0C0C;}
+
+/* ── MEMBERSHIP wrapper ── */
+.d5-mem{padding:100px 64px;}
+.d5-mem-top{text-align:center;margin-bottom:40px;}
+.d5-mem-ey{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:14px;}
+.d5-mem-ey-line{width:40px;height:1px;background:#F5C87A;}
+.d5-mem-ey-txt{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#F5C87A;}
+.d5-mem-title{font-family:'Cormorant Garant',Georgia,serif;font-size:36px;font-weight:300;color:#FAF0E8;margin-bottom:8px;}
+.d5-mem-sub{font-family:'Cormorant Garant',Georgia,serif;font-style:italic;font-size:15px;color:rgba(250,240,232,.5);margin-top:6px;}
+.d5-tier-tabs{display:none;}
+.d5-mem-cards{display:flex;justify-content:center;gap:20px;}
+
+/* ── SOCIAL ── */
+.d5-social{padding:100px 64px;text-align:center;}
+.d5-social-title{font-family:'Cormorant Garant',Georgia,serif;font-size:clamp(34px,3.5vw,50px);font-weight:300;color:#FAF0E8;margin-bottom:12px;}
+.d5-social-sub{font-size:14px;color:rgba(250,240,232,.44);margin-bottom:52px;}
+.d5-insta-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;max-width:660px;margin:0 auto 40px;}
+.d5-ig{aspect-ratio:1;background:rgba(245,200,122,.06);display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:pointer;transition:background .2s;}
+.d5-ig:hover{background:rgba(245,200,122,.12);}
+.d5-ig svg{width:36px;height:36px;opacity:.18;}
+.d5-social-handle{font-size:13px;letter-spacing:.1em;color:rgba(250,240,232,.42);margin-bottom:24px;}
+.d5-social-handle span{color:#F5C87A;}
+.d5-social-btn{padding:12px 32px;border:1px solid rgba(245,200,122,.38);background:transparent;color:#F5C87A;font-family:Helvetica,Arial,sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:all .18s;}
+.d5-social-btn:hover{background:#F5C87A;color:#3E0C0C;}
+
+/* ── FOOTER ── */
+.d5-footer{background:#2A0808;}
+.d5-foot-main{padding:44px 64px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:40px;border-bottom:1px solid rgba(245,200,122,.08);}
+.d5-foot-logo{font-family:'Cormorant Garant',Georgia,serif;font-size:22px;font-weight:600;letter-spacing:.18em;color:#F5C87A;}
+.d5-foot-tag{font-family:'Cormorant Garant',Georgia,serif;font-style:italic;font-size:15px;color:rgba(250,240,232,.38);text-align:center;letter-spacing:.04em;}
+.d5-foot-socials{display:flex;gap:12px;justify-content:flex-end;}
+.d5-foot-si{width:34px;height:34px;border:1px solid rgba(245,200,122,.18);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .18s;color:rgba(245,200,122,.45);}
+.d5-foot-si:hover{border-color:#F5C87A;color:#F5C87A;}
+.d5-foot-si svg{width:14px;height:14px;}
+.d5-foot-bar{padding:16px 64px;display:flex;align-items:center;justify-content:space-between;}
+.d5-foot-copy,.d5-foot-rzp{font-size:11px;color:rgba(250,240,232,.2);}
+.d5-foot-rzp span{color:rgba(245,200,122,.45);}
+
+/* ── D4 MOBILE ── */
+@media (max-width:768px){
+  .d5-nav{padding:14px 20px;}
+  .d5-nav-links{display:none;}
+  .d5-hero-content{padding:0 20px;max-width:100%;}
+  .d5-hero-sub{font-size:14px;}
+  .d5-story{grid-template-columns:1fr;padding:60px 20px;gap:32px;}
+  .d5-story-art{height:300px;}
+  .d5-diff{padding:60px 20px;}
+  .d5-diff-cards{grid-template-columns:1fr;}
+  .d5-trainers{padding:60px 20px;}
+  .d5-trainers-grid{grid-template-columns:repeat(2,1fr);gap:14px;}
+  .d5-tw{height:260px;}
+  .d5-events{padding:60px 20px;}
+  .d5-events-grid{grid-template-columns:1fr;}
+  .d5-mem{padding:60px 20px;}
+  .d5-mem-cards{flex-direction:column;align-items:center;gap:20px;padding:0 16px;}
+  .d5-social{padding:60px 20px;}
+  .d5-insta-grid{grid-template-columns:repeat(2,1fr);}
+  .d5-foot-main{grid-template-columns:1fr;padding:32px 20px;text-align:center;gap:14px;}
+  .d5-foot-socials{justify-content:center;}
+  .d5-foot-bar{padding:14px 20px;flex-direction:column;gap:6px;text-align:center;}
+}
+
+/* ===== D5 FIXES ===== */
+
+/* Stronger brand lockup */
+.d5-brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit;}
+.d5-brand-mark{width:58px;height:58px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(245,200,122,.22);background:rgba(245,200,122,.05);overflow:hidden;}
+.d5-brand-mark img{width:48px;height:48px;object-fit:contain;filter:saturate(.72) sepia(.18) contrast(.96);}
+.d5-brand-name{display:block;font-size:8.5px;font-weight:400;letter-spacing:.26em;color:rgba(250,240,232,.42);line-height:1.35;text-transform:uppercase;white-space:nowrap;}
+.d5-brand-sub{font-size:8.5px;letter-spacing:.26em;text-transform:uppercase;color:rgba(250,240,232,.42);margin-top:4px;white-space:nowrap;}
+
+/* Hero table anchor */
+.d5-hero::before{content:'';position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:min(980px,88vw);height:34%;border:1px solid rgba(245,200,122,.12);border-bottom:0;background:linear-gradient(180deg,rgba(80,10,10,.02),rgba(20,3,3,.34));opacity:.72;}
+.d5-hero-table{position:absolute;left:50%;bottom:66px;z-index:1;transform:translateX(-50%);width:min(760px,76vw);display:flex;align-items:flex-end;justify-content:center;gap:8px;padding:18px 22px 20px;border-bottom:2px solid rgba(245,200,122,.22);}
+.d5-hero-table svg{width:34px;height:51px;color:rgba(245,200,122,.52);filter:drop-shadow(0 10px 16px rgba(0,0,0,.25));}
+.d5-hero-table svg:nth-child(2n){transform:translateY(-4px);}
+.d5-hero-table svg:nth-child(3n){color:rgba(250,240,232,.42);}
+.d5-hero-content{transform:translateY(-36px);}
+
+/* Warmer story portrait */
+.d5-story{background:linear-gradient(180deg,#4f0b0b 0%,#3E0C0C 100%);}
+.d5-story-art{height:560px;border-color:rgba(245,200,122,.24);background:#2A0808;box-shadow:0 24px 70px rgba(0,0,0,.18);}
+.d5-story-photo{width:78%;height:88%;margin:0 auto;object-fit:cover;object-position:center top;}
+.d5-story-art-svg{opacity:.55;}
+.d5-story-caption{background:linear-gradient(to top,rgba(42,8,8,.92) 48%,transparent);padding:54px 28px 24px;}
+
+/* Trainers as a 3 + 2 editorial grid */
+.d5-trainers-grid{grid-template-columns:repeat(6,1fr);max-width:980px;gap:20px;}
+.d5-tw{grid-column:span 2;height:300px;}
+.d5-tw:nth-child(4){grid-column:2 / span 2;}
+.d5-tw:nth-child(5){grid-column:4 / span 2;}
+.d5-tf{background:linear-gradient(180deg,#FAF0E8 0%,#ead8cc 100%);border-color:rgba(245,200,122,.25);}
+.d5-tphoto{width:84px;height:84px;border-radius:50%;background:#3E0C0C;border:1px solid rgba(245,200,122,.45);color:#F5C87A;font-family:'Cormorant Garant',Georgia,serif;font-size:28px;font-style:italic;}
+.d5-tphoto svg{display:none;}
+.d5-tphoto::before{content:attr(data-initials);}
+.d5-hover-hint{display:block;}
+
+/* Events centered */
+.d5-events-grid{display:grid;grid-template-columns:2fr 1fr;gap:24px;max-width:960px;margin:0 auto;}
+.d5-events-head{max-width:960px;margin:0 auto 52px;}
+.d5-ev.featured{grid-row:span 2;display:flex;flex-direction:column;justify-content:center;background:rgba(245,200,122,.06);border-color:rgba(245,200,122,.38);padding:42px 40px;min-height:420px;}
+.d5-ev.featured .d5-ev-name{font-size:34px;}
+.d5-ev-feature-note{font-size:13px;line-height:1.8;color:rgba(250,240,232,.58);max-width:520px;margin:14px 0 4px;}
+
+/* Membership visual separation */
+.d5-mem{padding:100px 64px;background:rgba(255,255,255,.03);border-top:1px solid rgba(245,200,122,.1);}
+
+/* Trainer flip on click */
+.d5-tw:hover .d5-ti{transform:rotateY(180deg);}
+.d5-tw.flipped .d5-ti{transform:rotateY(180deg);}
+
+/* Social / community CTA */
+.d5-social{background:#3E0C0C;}
+.d5-sec-tag{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#F5C87A;margin-bottom:14px;}
+.d5-sec-h2{font-family:'Cormorant Garant',Georgia,serif;font-size:clamp(34px,3.5vw,52px);font-weight:300;color:#FAF0E8;margin-bottom:16px;}
+.d5-social-copy{font-size:15px;line-height:1.85;color:rgba(250,240,232,.58);max-width:560px;margin:0 auto 38px;}
+.d5-social-actions{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:900px;margin:0 auto;}
+.d5-social-card{border:1px solid rgba(245,200,122,.16);background:rgba(250,240,232,.04);padding:28px 24px;text-align:left;transition:background .2s,border-color .2s,transform .2s;}
+.d5-social-card:hover{background:rgba(250,240,232,.07);border-color:rgba(245,200,122,.34);transform:translateY(-3px);}
+.d5-social-card svg{width:34px;height:44px;color:rgba(245,200,122,.55);margin-bottom:18px;}
+.d5-social-card h3{font-family:'Cormorant Garant',Georgia,serif;font-size:24px;font-weight:400;color:#FAF0E8;margin-bottom:8px;}
+.d5-social-card p{font-size:12.5px;line-height:1.75;color:rgba(250,240,232,.52);}
+.d5-social-link{display:inline-block;margin-top:34px;padding:13px 30px;background:#F5C87A;color:#3E0C0C;text-decoration:none;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;}
+
+/* Scroll-to-top */
+#d5-scroll-top{position:fixed;bottom:32px;right:32px;z-index:9000;width:44px;height:44px;border-radius:50%;background:#F5C87A;color:#3E0C0C;border:none;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s ease,transform .3s ease;box-shadow:0 4px 20px rgba(0,0,0,.35);}
+#d5-scroll-top.visible{opacity:1;pointer-events:auto;}
+#d5-scroll-top:hover{transform:translateY(-3px);}
+
+/* D5 mobile */
+@media(max-width:768px){
+  .d5-brand-copy{display:block;}
+  .d5-brand-name{font-size:8px;letter-spacing:.2em;white-space:nowrap;}
+  .d5-brand-mark{width:48px;height:48px;}
+  .d5-brand-mark img{width:40px;height:40px;}
+  .d5-hero::before{width:92vw;height:28%;}
+  .d5-hero-table{bottom:58px;width:86vw;gap:5px;padding-left:10px;padding-right:10px;}
+  .d5-hero-table svg{width:24px;height:36px;}
+  .d5-hero-content{transform:translateY(-42px);}
+  .d5-hero-ey{font-size:9px;letter-spacing:.22em;gap:9px;}
+  .d5-events-grid{grid-template-columns:1fr;}
+  .d5-ev.featured{grid-column:auto;padding:32px 26px;}
+  .d5-ev.featured .d5-ev-name{font-size:28px;}
+  .d5-mem{padding:60px 0;}
+  .d5-nav-links{display:none;}
+  .d5-hero-inner{padding:0 24px;max-width:100%;box-sizing:border-box;}
+  .d5-story-inner{flex-direction:column;padding:60px 24px;gap:40px;}
+  .d5-story-art{height:380px;}
+  .d5-story-photo{width:82%;height:86%;}
+  .d5-diff-grid{grid-template-columns:1fr;gap:16px;padding:0 24px;}
+  .d5-trainers-grid{grid-template-columns:1fr;gap:14px;padding:0 24px;}
+  .d5-tw,.d5-tw:nth-child(4),.d5-tw:nth-child(5){grid-column:auto;height:auto;perspective:none;}
+  .d5-ti{transform:none!important;}
+  .d5-tf,.d5-tb{position:relative;inset:auto;transform:none;backface-visibility:visible;border-radius:7px;}
+  .d5-tb{display:none;}
+  .d5-tf{min-height:0;align-items:flex-start;text-align:left;padding:18px 18px 18px 94px;}
+  .d5-tphoto{position:absolute;left:18px;top:18px;width:58px;height:58px;font-size:22px;}
+  .d5-tcity,.d5-tspec{width:auto;text-align:left;}
+  .d5-tile-deco,.d5-hover-hint{display:none;}
+  .d5-events-grid{padding:0 24px;}
+  .d5-mem-inner{padding:0 24px;}
+  .d5-mem-top{padding:0 24px;}
+  .d5-tier-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0 24px 20px;padding:6px;background:rgba(250,240,232,.06);border:1px solid rgba(245,200,122,.14);}
+  .d5-tier-tab{min-height:58px;border:1px solid transparent;background:transparent;color:rgba(250,240,232,.72);font-family:Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;}
+  .d5-tier-tab span{font-family:'Cormorant Garant',Georgia,serif;font-size:18px;font-weight:500;letter-spacing:0;text-transform:none;}
+  .d5-tier-tab small{font-size:8px;letter-spacing:.13em;color:rgba(250,240,232,.48);}
+  .d5-tier-tab.active{background:#F5C87A;color:#3E0C0C;border-color:#F5C87A;}
+  .d5-tier-tab.active small{color:rgba(62,12,12,.7);}
+  .d5-mem-cards{display:block;padding:0 24px;}
+  .d5 .d4-mc{width:100%;max-width:360px;margin:0 auto;display:none;opacity:1;}
+  .d5 .d4-mc.active-tier{display:flex;}
+  .d5 .d4-mc:hover{transform:none;}
+  .d5-social-inner{padding:60px 24px;}
+  .d5-social-actions{grid-template-columns:1fr;}
+  .d5-footer-inner{padding:40px 24px;flex-direction:column;gap:32px;}
+  .d5-footer-cols{flex-direction:column;gap:24px;}
+  .d5-nav{padding:16px 20px;}
+  #d5-scroll-top{bottom:20px;right:20px;}
+}
+@media(max-width:480px){
+  .d5-trainers-grid{grid-template-columns:1fr;}
+  .d5-hero-h1{font-size:clamp(36px,10vw,60px);}
+  .d5-mem-title{font-size:32px;}
+}
+
+</style>
+
+<div class="dir d5 on" id="dir5">
+
+  <!-- NAV -->
+  <nav class="d5-nav">
+    <a class="d5-brand" href="#" aria-label="Indian Mahjong Association home">
+      <span class="d5-brand-mark"><img src="mahjong_logo.jpg" alt=""></span>
+      <span class="d5-brand-copy">
+        <span class="d5-brand-name">Indian Mahjong Association</span>
+      </span>
+    </a>
+    <ul class="d5-nav-links">
+      <li><a href="#d5-mem">Membership</a></li>
+      <li><a href="#d5-footer">Contact</a></li>
+    </ul>
+    <button class="mob-ham" style="color:#FAF0E8" onclick="openMobMenu()"><span></span><span></span><span></span></button>
+  </nav>
+
+  <!-- ── S1: HERO ── -->
+  <section class="d5-hero">
+    <div class="d5-hero-tiles" aria-hidden="true">
+      <svg class="d5-ht s1" width="52" height="78"><use href="#t-bamboo"/></svg>
+      <svg class="d5-ht s2" width="44" height="66"><use href="#t-circle"/></svg>
+      <svg class="d5-ht s3" width="60" height="90"><use href="#t-wind"/></svg>
+      <svg class="d5-ht s4" width="48" height="72"><use href="#t-dragon"/></svg>
+      <svg class="d5-ht s5" width="40" height="60"><use href="#t-bamboo"/></svg>
+      <svg class="d5-ht s6" width="56" height="84"><use href="#t-char"/></svg>
+      <svg class="d5-ht s7" width="88" height="132"><use href="#t-circle"/></svg>
+      <svg class="d5-ht s8" width="96" height="144"><use href="#t-bamboo"/></svg>
+      <svg class="d5-ht s9" width="44" height="66"><use href="#t-dragon"/></svg>
+      <svg class="d5-ht s10" width="72" height="108"><use href="#t-wind"/></svg>
+      <svg class="d5-ht s11" width="120" height="180"><use href="#t-char"/></svg>
+      <svg class="d5-ht s12" width="110" height="165"><use href="#t-circle"/></svg>
+    </div>
+    <div class="d5-hero-table" aria-hidden="true">
+      <svg><use href="#t-bamboo"/></svg>
+      <svg><use href="#t-circle"/></svg>
+      <svg><use href="#t-char"/></svg>
+      <svg><use href="#t-wind"/></svg>
+      <svg><use href="#t-dragon"/></svg>
+      <svg><use href="#t-circle"/></svg>
+      <svg><use href="#t-bamboo"/></svg>
+      <svg><use href="#t-char"/></svg>
+      <svg><use href="#t-wind"/></svg>
+      <svg><use href="#t-dragon"/></svg>
+      <svg><use href="#t-circle"/></svg>
+      <svg><use href="#t-bamboo"/></svg>
+      <svg><use href="#t-char"/></svg>
+    </div>
+    <div class="d5-hero-content">
+      <div class="d5-hero-ey">
+        <span class="d5-hero-ey-line"></span>
+        <span>The Indian Mahjong Association</span>
+        <span class="d5-hero-ey-line"></span>
+      </div>
+      <h1 class="d5-hero-h1">Where India Plays<br>the True Game</h1>
+      <p class="d5-hero-sub">The authentic Chinese mahjong tradition, with an Indian heart. Community, strategy and belonging. One tile at a time.</p>
+      <button class="d5-hero-cta" onclick="document.getElementById('d5-mem').scrollIntoView({behavior:'smooth'})">Join Now</button>
+    </div>
+    <div class="d5-hero-scroll" aria-hidden="true">
+      <span class="d5-scroll-line"></span>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ── S2: OUR STORY ── -->
+  <section class="d5-story" id="d5-story">
+    <div class="d5-fade">
+      <div class="d5-story-art">
+        <img src="Vineeta.jpeg" alt="Vineeta Sahni" class="d5-story-photo">
+        <svg class="d5-story-art-svg" viewBox="0 0 440 540" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <g transform="translate(360,70)">
+            <circle cx="0" cy="0" r="9" fill="none" stroke="currentColor" stroke-width="1"/>
+            <circle cx="0" cy="-28" r="17" fill="none" stroke="currentColor" stroke-width="1"/>
+            <circle cx="24" cy="-14" r="17" fill="none" stroke="currentColor" stroke-width="1"/>
+            <circle cx="24" cy="14" r="17" fill="none" stroke="currentColor" stroke-width="1"/>
+            <circle cx="0" cy="28" r="17" fill="none" stroke="currentColor" stroke-width="1"/>
+            <circle cx="-24" cy="14" r="17" fill="none" stroke="currentColor" stroke-width="1"/>
+            <circle cx="-24" cy="-14" r="17" fill="none" stroke="currentColor" stroke-width="1"/>
+          </g>
+          <g transform="translate(30,30)" opacity=".8">
+            <rect x="0" y="0" width="56" height="80" rx="4" fill="none" stroke="currentColor" stroke-width="1.5"/>
+            <rect x="6" y="6" width="44" height="68" rx="2" fill="none" stroke="currentColor" stroke-width=".7"/>
+            <line x1="28" y1="16" x2="28" y2="64" stroke="currentColor" stroke-width="1"/>
+            <line x1="14" y1="28" x2="42" y2="28" stroke="currentColor" stroke-width="1"/>
+            <line x1="14" y1="40" x2="42" y2="40" stroke="currentColor" stroke-width="1"/>
+            <line x1="14" y1="54" x2="42" y2="54" stroke="currentColor" stroke-width="1"/>
+          </g>
+          <g transform="translate(20,160)">
+            <line x1="0" y1="0" x2="0" y2="280" stroke="currentColor" stroke-width="1.5"/>
+            <ellipse cx="0" cy="40" rx="14" ry="8" fill="none" stroke="currentColor" stroke-width="1"/>
+            <ellipse cx="0" cy="95" rx="14" ry="8" fill="none" stroke="currentColor" stroke-width="1"/>
+            <ellipse cx="0" cy="150" rx="14" ry="8" fill="none" stroke="currentColor" stroke-width="1"/>
+            <ellipse cx="0" cy="205" rx="14" ry="8" fill="none" stroke="currentColor" stroke-width="1"/>
+            <ellipse cx="0" cy="260" rx="14" ry="8" fill="none" stroke="currentColor" stroke-width="1"/>
+          </g>
+          <g transform="translate(345,400)" opacity=".7">
+            <rect x="0" y="0" width="56" height="80" rx="4" fill="none" stroke="currentColor" stroke-width="1.5"/>
+            <rect x="6" y="6" width="44" height="68" rx="2" fill="none" stroke="currentColor" stroke-width=".7"/>
+            <circle cx="28" cy="40" r="18" fill="none" stroke="currentColor" stroke-width="1"/>
+            <circle cx="28" cy="40" r="8" fill="none" stroke="currentColor" stroke-width=".8"/>
+          </g>
+          <line x1="60" y1="140" x2="160" y2="140" stroke="currentColor" stroke-width=".5" opacity=".5"/>
+          <line x1="60" y1="148" x2="120" y2="148" stroke="currentColor" stroke-width=".5" opacity=".3"/>
+          <line x1="300" y1="320" x2="420" y2="320" stroke="currentColor" stroke-width=".5" opacity=".5"/>
+        </svg>
+        <div class="d5-story-caption">
+          <div class="d5-story-fn">Vineeta Sahni</div>
+          <div class="d5-story-fr">Founder, IMA</div>
+        </div>
+      </div>
+    </div>
+    <div class="d5-fade d5-fd2">
+      <div class="d5-story-rule"></div>
+      <h2 class="d5-story-h2">A Game Born<br>at the <em>Front</em></h2>
+      <p class="d5-story-p">Vineeta discovered mahjong as an army wife, stationed far from home. Around a table with fellow army wives, tiles became a language of patience, strategy and belonging.</p>
+      <p class="d5-story-p">She brought that game home to India. She taught it to her children, her neighbours, her community. And she saw what the table did: it made strangers into friends, and friends into family.</p>
+      <p class="d5-story-p">The Indian Mahjong Association was born from that conviction: that this game, in all its richness, belongs in every Indian home.</p>
+      <div class="d5-story-sig">- Vineeta Sahni</div>
+    </div>
+  </section>
+
+  <!-- ── S3: WHAT MAKES IMA DIFFERENT ── -->
+  <section class="d5-diff">
+    <div class="d5-diff-head d5-fade">
+      <div class="d5-sec-ey"><span class="d5-sec-ey-line"></span><span>Our Principles</span></div>
+      <h2 class="d5-sec-title">What Makes IMA Different</h2>
+    </div>
+    <div class="d5-diff-cards">
+      <div class="d5-diff-card d5-fade d5-fd1">
+        <svg class="d5-diff-icon" viewBox="0 0 28 42"><use href="#t-char"/></svg>
+        <div class="d5-diff-card-h">The Authentic Game</div>
+        <p class="d5-diff-card-p">We play and teach the true Chinese mahjong tradition: 144 tiles, proper scoring and the complete ruleset as it was meant to be played.</p>
+      </div>
+      <div class="d5-diff-card d5-fade d5-fd2">
+        <svg class="d5-diff-icon" viewBox="0 0 44 62" style="height:54px;">
+          <circle cx="22" cy="22" r="6" fill="none" stroke="currentColor" stroke-width="1.2"/>
+          <circle cx="22" cy="4" r="10" fill="none" stroke="currentColor" stroke-width="1"/>
+          <circle cx="37" cy="13" r="10" fill="none" stroke="currentColor" stroke-width="1"/>
+          <circle cx="37" cy="31" r="10" fill="none" stroke="currentColor" stroke-width="1"/>
+          <circle cx="22" cy="40" r="10" fill="none" stroke="currentColor" stroke-width="1"/>
+          <circle cx="7" cy="31" r="10" fill="none" stroke="currentColor" stroke-width="1"/>
+          <circle cx="7" cy="13" r="10" fill="none" stroke="currentColor" stroke-width="1"/>
+          <line x1="22" y1="44" x2="22" y2="62" stroke="currentColor" stroke-width="1"/>
+        </svg>
+        <div class="d5-diff-card-h">An Indian Touch</div>
+        <p class="d5-diff-card-p">Adapted with warmth for Indian families: workshops in Hindi and English, family-friendly sessions and a community that feels like home.</p>
+      </div>
+      <div class="d5-diff-card d5-fade d5-fd3">
+        <svg class="d5-diff-icon" viewBox="0 0 28 42"><use href="#t-circle"/></svg>
+        <div class="d5-diff-card-h">Open to All</div>
+        <p class="d5-diff-card-p">Every gender, age and background is welcome at our table. From eight to eighty, from beginner to champion. The tiles make no distinction.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── S4: TRAINERS ── -->
+  <section class="d5-trainers">
+    <div class="d5-trainers-head d5-fade">
+      <div class="d5-sec-ey" style="justify-content:center;"><span class="d5-sec-ey-line"></span><span>The Experts</span><span class="d5-sec-ey-line"></span></div>
+      <h2 class="d5-sec-title" style="text-align:center;">Meet Our Trainers</h2>
+      <p style="font-size:13px;color:rgba(250,240,232,.4);text-align:center;margin-top:4px;">Tap or hover a card to learn more</p>
+    </div>
+    <div class="d5-trainers-grid">
+      <div class="d5-tw d5-fade d5-fd1" onclick="this.classList.toggle('flipped')"><div class="d5-ti">
+        <div class="d5-tf"><div class="d5-tphoto" data-initials="PS"><svg viewBox="0 0 40 40"><circle cx="20" cy="14" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5 40 C5 27 35 27 35 40" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></div>
+          <div class="d5-tname">Priya Sharma</div><div class="d5-tcity">New Delhi</div><div class="d5-tspec">Competitive Play</div>
+          <div class="d5-tile-deco"><svg width="18" height="28"><use href="#t-bamboo"/></svg></div></div>
+        <div class="d5-tb"><div class="d5-tb-name">Priya Sharma</div><div class="d5-tb-rule"></div>
+          <div class="d5-tb-bio">12 years competitive play. Ranked top 10 nationally. Specialises in Hong Kong and Riichi rulesets. Former IMA Youth Champion.</div></div>
+      </div></div>
+      <div class="d5-tw d5-fade d5-fd2" onclick="this.classList.toggle('flipped')"><div class="d5-ti">
+        <div class="d5-tf"><div class="d5-tphoto" data-initials="RM"><svg viewBox="0 0 40 40"><circle cx="20" cy="14" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5 40 C5 27 35 27 35 40" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></div>
+          <div class="d5-tname">Rajan Mehta</div><div class="d5-tcity">Mumbai</div><div class="d5-tspec">Strategy &amp; Tactics</div>
+          <div class="d5-tile-deco"><svg width="18" height="28"><use href="#t-circle"/></svg></div></div>
+        <div class="d5-tb"><div class="d5-tb-name">Rajan Mehta</div><div class="d5-tb-rule"></div>
+          <div class="d5-tb-bio">Trained under masters in Macau. Coaches the Mumbai Regional Team. Author of <em>'Tile &amp; Mind'</em>.</div></div>
+      </div></div>
+      <div class="d5-tw d5-fade d5-fd3" onclick="this.classList.toggle('flipped')"><div class="d5-ti">
+        <div class="d5-tf"><div class="d5-tphoto" data-initials="AK"><svg viewBox="0 0 40 40"><circle cx="20" cy="14" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5 40 C5 27 35 27 35 40" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></div>
+          <div class="d5-tname">Anita Krishnan</div><div class="d5-tcity">Bangalore</div><div class="d5-tspec">Beginner Workshops</div>
+          <div class="d5-tile-deco"><svg width="18" height="28"><use href="#t-char"/></svg></div></div>
+        <div class="d5-tb"><div class="d5-tb-name">Anita Krishnan</div><div class="d5-tb-rule"></div>
+          <div class="d5-tb-bio">Known for her patient teaching style. Has introduced over 400 beginners to mahjong across South India in 3 years.</div></div>
+      </div></div>
+      <div class="d5-tw d5-fade d5-fd4" onclick="this.classList.toggle('flipped')"><div class="d5-ti">
+        <div class="d5-tf"><div class="d5-tphoto" data-initials="DN"><svg viewBox="0 0 40 40"><circle cx="20" cy="14" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5 40 C5 27 35 27 35 40" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></div>
+          <div class="d5-tname">Deepak Nair</div><div class="d5-tcity">Chennai</div><div class="d5-tspec">Advanced Techniques</div>
+          <div class="d5-tile-deco"><svg width="18" height="28"><use href="#t-wind"/></svg></div></div>
+        <div class="d5-tb"><div class="d5-tb-name">Deepak Nair</div><div class="d5-tb-rule"></div>
+          <div class="d5-tb-bio">Former national champion. Expert in tile analysis and advanced scoring. Runs intensive weekend programmes in Chennai.</div></div>
+      </div></div>
+      <div class="d5-tw d5-fade d5-fd5" onclick="this.classList.toggle('flipped')"><div class="d5-ti">
+        <div class="d5-tf"><div class="d5-tphoto" data-initials="MP"><svg viewBox="0 0 40 40"><circle cx="20" cy="14" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5 40 C5 27 35 27 35 40" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></div>
+          <div class="d5-tname">Meera Patel</div><div class="d5-tcity">Pune</div><div class="d5-tspec">Family Mahjong</div>
+          <div class="d5-tile-deco"><svg width="18" height="28"><use href="#t-dragon"/></svg></div></div>
+        <div class="d5-tb"><div class="d5-tb-name">Meera Patel</div><div class="d5-tb-rule"></div>
+          <div class="d5-tb-bio">Brings mahjong into family settings with warmth and joy. Runs beloved weekend workshops for parents and children together.</div></div>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- ── S5: EVENTS ── -->
+  <section class="d5-events" id="d5-events">
+    <div class="d5-events-head d5-fade">
+      <div class="d5-sec-ey"><span class="d5-sec-ey-line"></span><span>What's On</span></div>
+      <h2 class="d5-sec-title">Events &amp; Tournaments</h2>
+    </div>
+    <div class="d5-events-grid">
+      <div class="d5-ev featured d5-fade d5-fd1">
+        <span class="d5-ev-badge tr">Training</span>
+        <div class="d5-ev-name">Beginner Training Camp</div>
+        <p class="d5-ev-feature-note">A two-day table-first introduction for new players, families and returning members who want to learn the authentic rules with confidence.</p>
+        <p class="d5-ev-meta">Date &nbsp;<strong>15-16 June 2026</strong></p>
+        <p class="d5-ev-meta">City &nbsp;<strong>New Delhi</strong></p>
+        <p class="d5-ev-meta">Format &nbsp;<strong>Weekend Intensive</strong></p>
+        <div class="d5-ev-rule"></div>
+        <button class="d5-ev-btn">Register Now</button>
+      </div>
+      <div class="d5-ev d5-fade d5-fd2">
+        <span class="d5-ev-badge tm">Tournament</span>
+        <div class="d5-ev-name">IMA South India Championship</div>
+        <p class="d5-ev-meta">Date &nbsp;<strong>6 July 2026</strong></p>
+        <p class="d5-ev-meta">City &nbsp;<strong>Bangalore</strong></p>
+        <p class="d5-ev-meta">Format &nbsp;<strong>Swiss Draw &middot; 4 Rounds</strong></p>
+        <div class="d5-ev-rule"></div>
+        <button class="d5-ev-btn">Register Now</button>
+      </div>
+      <div class="d5-ev d5-fade d5-fd3">
+        <span class="d5-ev-badge tr">Training</span>
+        <div class="d5-ev-name">Family Mahjong Day</div>
+        <p class="d5-ev-meta">Date &nbsp;<strong>20 July 2026</strong></p>
+        <p class="d5-ev-meta">City &nbsp;<strong>Mumbai</strong></p>
+        <p class="d5-ev-meta">Format &nbsp;<strong>Open to All Ages</strong></p>
+        <div class="d5-ev-rule"></div>
+        <button class="d5-ev-btn">Register Now</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── S6: MEMBERSHIP ── -->
+  <section class="d5-mem" id="d5-mem">
+    <div class="d5-mem-top d5-fade">
+      <div class="d5-mem-ey"><span class="d5-mem-ey-line"></span><span class="d5-mem-ey-txt">Membership</span><span class="d5-mem-ey-line"></span></div>
+      <h2 class="d5-mem-title">Choose Your Tier</h2>
+      <p class="d5-mem-sub">In mahjong every set tells a story. Which tier will you play?</p>
+    </div>
+    <div class="d5-tier-tabs" role="tablist" aria-label="Membership tiers">
+      <button class="d5-tier-tab active" type="button" role="tab" aria-selected="true" data-tier="pearl"><span>1 Year</span><small>Pearl</small></button>
+      <button class="d5-tier-tab" type="button" role="tab" aria-selected="false" data-tier="ruby"><span>5 Year</span><small>Ruby</small></button>
+      <button class="d5-tier-tab" type="button" role="tab" aria-selected="false" data-tier="jade"><span>Lifetime</span><small>Jade</small></button>
+    </div>
+    <div class="d5-mem-cards">
+
+      <!-- PEARL -->
+      <div class="d4-mc pearl active-tier" data-tier-card="pearl">
+        <div class="d4-mc-top">
+          <div class="d5-tile-svg-wrap"><svg width="220" height="136" viewBox="0 0 220 136" fill="none" xmlns="http://www.w3.org/2000/svg"><g transform="translate(80,0)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#8B6020" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#8B6020" stroke-width="0.55" fill="none"/><rect x="4.5" y="5" width="9" height="14" rx="1" stroke="#8B6020" stroke-width="0.8" fill="none"/></g><g transform="translate(101,0)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#8B6020" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#8B6020" stroke-width="0.55" fill="none"/><rect x="4.5" y="5" width="9" height="14" rx="1" stroke="#8B6020" stroke-width="0.8" fill="none"/></g><g transform="translate(122,0)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#8B6020" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#8B6020" stroke-width="0.55" fill="none"/><rect x="4.5" y="5" width="9" height="14" rx="1" stroke="#8B6020" stroke-width="0.8" fill="none"/></g><g transform="translate(80,27)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#8B6020" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#8B6020" stroke-width="0.55" fill="none"/><circle cx="9" cy="5" r="1.9" fill="#8B6020"/><circle cx="4" cy="12" r="1.9" fill="#8B6020"/><circle cx="9" cy="12" r="1.9" fill="#8B6020"/><circle cx="14" cy="12" r="1.9" fill="#8B6020"/><circle cx="9" cy="19" r="1.9" fill="#8B6020"/></g><g transform="translate(101,27)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#8B6020" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#8B6020" stroke-width="0.55" fill="none"/><circle cx="9" cy="5" r="1.9" fill="#8B6020"/><circle cx="4" cy="12" r="1.9" fill="#8B6020"/><circle cx="9" cy="12" r="1.9" fill="#8B6020"/><circle cx="14" cy="12" r="1.9" fill="#8B6020"/><circle cx="9" cy="19" r="1.9" fill="#8B6020"/></g><g transform="translate(122,27)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#8B6020" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#8B6020" stroke-width="0.55" fill="none"/><circle cx="9" cy="5" r="1.9" fill="#8B6020"/><circle cx="4" cy="12" r="1.9" fill="#8B6020"/><circle cx="9" cy="12" r="1.9" fill="#8B6020"/><circle cx="14" cy="12" r="1.9" fill="#8B6020"/><circle cx="9" cy="19" r="1.9" fill="#8B6020"/></g><g transform="translate(80,54)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#8B6020" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#8B6020" stroke-width="0.55" fill="none"/><circle cx="5" cy="6" r="1.4" fill="#8B6020"/><circle cx="9" cy="6" r="1.4" fill="#8B6020"/><circle cx="13" cy="6" r="1.4" fill="#8B6020"/><circle cx="5" cy="12" r="1.4" fill="#8B6020"/><circle cx="9" cy="12" r="1.4" fill="#8B6020"/><circle cx="13" cy="12" r="1.4" fill="#8B6020"/><circle cx="5" cy="18" r="1.4" fill="#8B6020"/><circle cx="9" cy="18" r="1.4" fill="#8B6020"/><circle cx="13" cy="18" r="1.4" fill="#8B6020"/></g><g transform="translate(101,54)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#8B6020" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#8B6020" stroke-width="0.55" fill="none"/><circle cx="5" cy="6" r="1.4" fill="#8B6020"/><circle cx="9" cy="6" r="1.4" fill="#8B6020"/><circle cx="13" cy="6" r="1.4" fill="#8B6020"/><circle cx="5" cy="12" r="1.4" fill="#8B6020"/><circle cx="9" cy="12" r="1.4" fill="#8B6020"/><circle cx="13" cy="12" r="1.4" fill="#8B6020"/><circle cx="5" cy="18" r="1.4" fill="#8B6020"/><circle cx="9" cy="18" r="1.4" fill="#8B6020"/><circle cx="13" cy="18" r="1.4" fill="#8B6020"/></g><g transform="translate(122,54)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#8B6020" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#8B6020" stroke-width="0.55" fill="none"/><circle cx="5" cy="6" r="1.4" fill="#8B6020"/><circle cx="9" cy="6" r="1.4" fill="#8B6020"/><circle cx="13" cy="6" r="1.4" fill="#8B6020"/><circle cx="5" cy="12" r="1.4" fill="#8B6020"/><circle cx="9" cy="12" r="1.4" fill="#8B6020"/><circle cx="13" cy="12" r="1.4" fill="#8B6020"/><circle cx="5" cy="18" r="1.4" fill="#8B6020"/><circle cx="9" cy="18" r="1.4" fill="#8B6020"/><circle cx="13" cy="18" r="1.4" fill="#8B6020"/></g><g transform="translate(80,81)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#8B6020" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#8B6020" stroke-width="0.55" fill="none"/><circle cx="9" cy="6" r="2.4" fill="#8B6020"/><circle cx="9" cy="12" r="2.4" fill="#8B6020"/><circle cx="9" cy="18" r="2.4" fill="#8B6020"/></g><g transform="translate(101,81)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#8B6020" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#8B6020" stroke-width="0.55" fill="none"/><circle cx="9" cy="6" r="2.4" fill="#8B6020"/><circle cx="9" cy="12" r="2.4" fill="#8B6020"/><circle cx="9" cy="18" r="2.4" fill="#8B6020"/></g><g transform="translate(122,81)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#8B6020" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#8B6020" stroke-width="0.55" fill="none"/><circle cx="9" cy="6" r="2.4" fill="#8B6020"/><circle cx="9" cy="12" r="2.4" fill="#8B6020"/><circle cx="9" cy="18" r="2.4" fill="#8B6020"/></g><g transform="translate(90,108)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#8B6020" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#8B6020" stroke-width="0.55" fill="none"/><circle cx="9" cy="12" r="5.5" stroke="#8B6020" stroke-width="0.8" fill="none"/><circle cx="9" cy="12" r="2.5" fill="#8B6020"/></g><g transform="translate(111,108)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#8B6020" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#8B6020" stroke-width="0.55" fill="none"/><circle cx="9" cy="12" r="5.5" stroke="#8B6020" stroke-width="0.8" fill="none"/><circle cx="9" cy="12" r="2.5" fill="#8B6020"/></g></svg></div>
+          <div class="d4-hand-badge">The Pearl Tier</div>
+        </div>
+        <div class="d4-mc-body">
+          <div class="d4-hand-name">Pearl Tier</div>
+          <div class="d4-hand-tag">Every master begins with a clean hand</div>
+          <div class="d4-c-divider"></div>
+          <div class="d4-c-tier">1 Year Membership</div>
+          <div class="d4-c-price"><sup class="d5-rs">&#8377;</sup>1,000</div>
+          <div class="d4-c-period">Per year, renews annually</div>
+          <ul class="d4-feats">
+            <li>Access to 2 events per year</li>
+            <li>Digital membership card</li>
+            <li>Monthly newsletter</li>
+            <li>Member community access</li>
+          </ul>
+        </div>
+        <button class="d4-c-btn">Play the Pearl</button>
+      </div>
+
+      <!-- RUBY -->
+      <div class="d4-mc ruby" data-tier-card="ruby">
+        <div class="d4-mc-top">
+          <div class="d4-bv-bar">&#9733; Best Value</div>
+          <div class="d5-tile-svg-wrap"><svg width="220" height="136" viewBox="0 0 220 136" fill="none" xmlns="http://www.w3.org/2000/svg"><g transform="translate(80,0)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#C87070" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#C87070" stroke-width="0.55" fill="none"/><text x="9" y="17" text-anchor="middle" font-size="12" font-family="serif" fill="#C87070">中</text></g><g transform="translate(101,0)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#C87070" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#C87070" stroke-width="0.55" fill="none"/><text x="9" y="17" text-anchor="middle" font-size="12" font-family="serif" fill="#C87070">中</text></g><g transform="translate(122,0)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#C87070" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#C87070" stroke-width="0.55" fill="none"/><text x="9" y="17" text-anchor="middle" font-size="12" font-family="serif" fill="#C87070">中</text></g><g transform="translate(80,27)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#C87070" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#C87070" stroke-width="0.55" fill="none"/><text x="9" y="12" text-anchor="middle" font-size="9" font-family="serif" fill="#C87070">萬</text><text x="9" y="21" text-anchor="middle" font-size="7" font-family="serif" fill="#C87070">七</text></g><g transform="translate(101,27)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#C87070" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#C87070" stroke-width="0.55" fill="none"/><text x="9" y="12" text-anchor="middle" font-size="9" font-family="serif" fill="#C87070">萬</text><text x="9" y="21" text-anchor="middle" font-size="7" font-family="serif" fill="#C87070">七</text></g><g transform="translate(122,27)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#C87070" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#C87070" stroke-width="0.55" fill="none"/><text x="9" y="12" text-anchor="middle" font-size="9" font-family="serif" fill="#C87070">萬</text><text x="9" y="21" text-anchor="middle" font-size="7" font-family="serif" fill="#C87070">七</text></g><g transform="translate(80,54)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#C87070" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#C87070" stroke-width="0.55" fill="none"/><text x="9" y="12" text-anchor="middle" font-size="9" font-family="serif" fill="#C87070">萬</text><text x="9" y="21" text-anchor="middle" font-size="7" font-family="serif" fill="#C87070">三</text></g><g transform="translate(101,54)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#C87070" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#C87070" stroke-width="0.55" fill="none"/><text x="9" y="12" text-anchor="middle" font-size="9" font-family="serif" fill="#C87070">萬</text><text x="9" y="21" text-anchor="middle" font-size="7" font-family="serif" fill="#C87070">三</text></g><g transform="translate(122,54)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#C87070" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#C87070" stroke-width="0.55" fill="none"/><text x="9" y="12" text-anchor="middle" font-size="9" font-family="serif" fill="#C87070">萬</text><text x="9" y="21" text-anchor="middle" font-size="7" font-family="serif" fill="#C87070">三</text></g><g transform="translate(80,81)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#C87070" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#C87070" stroke-width="0.55" fill="none"/><text x="9" y="12" text-anchor="middle" font-size="9" font-family="serif" fill="#C87070">萬</text><text x="9" y="21" text-anchor="middle" font-size="7" font-family="serif" fill="#C87070">九</text></g><g transform="translate(101,81)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#C87070" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#C87070" stroke-width="0.55" fill="none"/><text x="9" y="12" text-anchor="middle" font-size="9" font-family="serif" fill="#C87070">萬</text><text x="9" y="21" text-anchor="middle" font-size="7" font-family="serif" fill="#C87070">九</text></g><g transform="translate(122,81)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#C87070" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#C87070" stroke-width="0.55" fill="none"/><text x="9" y="12" text-anchor="middle" font-size="9" font-family="serif" fill="#C87070">萬</text><text x="9" y="21" text-anchor="middle" font-size="7" font-family="serif" fill="#C87070">九</text></g><g transform="translate(90,108)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#C87070" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#C87070" stroke-width="0.55" fill="none"/><text x="9" y="12" text-anchor="middle" font-size="9" font-family="serif" fill="#C87070">二</text><text x="9" y="21" text-anchor="middle" font-size="7" font-family="serif" fill="#C87070">萬</text></g><g transform="translate(111,108)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#C87070" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#C87070" stroke-width="0.55" fill="none"/><text x="9" y="12" text-anchor="middle" font-size="9" font-family="serif" fill="#C87070">二</text><text x="9" y="21" text-anchor="middle" font-size="7" font-family="serif" fill="#C87070">萬</text></g></svg></div>
+          <div class="d4-hand-badge">The Ruby Tier</div>
+        </div>
+        <div class="d4-mc-body">
+          <div class="d4-hand-name">Ruby Tier</div>
+          <div class="d4-hand-tag">The fire of someone who plays with purpose</div>
+          <div class="d4-c-divider"></div>
+          <div class="d4-c-tier">5 Year Membership</div>
+          <div class="d4-c-price"><sup class="d5-rs">&#8377;</sup>4,000</div>
+          <div class="d4-c-period">5 years, save &#8377;1,000 vs annual</div>
+          <ul class="d4-feats">
+            <li>Everything in Pearl</li>
+            <li>VIP invites to 10 game sessions per year</li>
+            <li>Priority event booking</li>
+            <li>4 guest passes per year</li>
+          </ul>
+        </div>
+        <button class="d4-c-btn">Play the Ruby</button>
+      </div>
+
+      <!-- JADE -->
+      <div class="d4-mc jade" data-tier-card="jade">
+        <div class="d4-mc-top">
+          <div class="d5-tile-svg-wrap"><svg width="220" height="136" viewBox="0 0 220 136" fill="none" xmlns="http://www.w3.org/2000/svg"><g transform="translate(80,0)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#5DB86A" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#5DB86A" stroke-width="0.55" fill="none"/><text x="9" y="17" text-anchor="middle" font-size="12" font-family="serif" fill="#5DB86A">發</text></g><g transform="translate(101,0)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#5DB86A" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#5DB86A" stroke-width="0.55" fill="none"/><text x="9" y="17" text-anchor="middle" font-size="12" font-family="serif" fill="#5DB86A">發</text></g><g transform="translate(122,0)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#5DB86A" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#5DB86A" stroke-width="0.55" fill="none"/><text x="9" y="17" text-anchor="middle" font-size="12" font-family="serif" fill="#5DB86A">發</text></g><g transform="translate(80,27)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#5DB86A" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#5DB86A" stroke-width="0.55" fill="none"/><rect x="4.25" y="4" width="2.5" height="15" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="4.25" y1="10.75" x2="6.75" y2="10.75" stroke="#5DB86A" stroke-width="0.5"/><line x1="5.5" y1="4" x2="7.5" y2="2" stroke="#5DB86A" stroke-width="0.5"/><rect x="11.25" y="4" width="2.5" height="15" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="11.25" y1="10.75" x2="13.75" y2="10.75" stroke="#5DB86A" stroke-width="0.5"/><line x1="12.5" y1="4" x2="14.5" y2="2" stroke="#5DB86A" stroke-width="0.5"/></g><g transform="translate(101,27)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#5DB86A" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#5DB86A" stroke-width="0.55" fill="none"/><rect x="4.25" y="4" width="2.5" height="15" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="4.25" y1="10.75" x2="6.75" y2="10.75" stroke="#5DB86A" stroke-width="0.5"/><line x1="5.5" y1="4" x2="7.5" y2="2" stroke="#5DB86A" stroke-width="0.5"/><rect x="11.25" y="4" width="2.5" height="15" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="11.25" y1="10.75" x2="13.75" y2="10.75" stroke="#5DB86A" stroke-width="0.5"/><line x1="12.5" y1="4" x2="14.5" y2="2" stroke="#5DB86A" stroke-width="0.5"/></g><g transform="translate(122,27)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#5DB86A" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#5DB86A" stroke-width="0.55" fill="none"/><rect x="4.25" y="4" width="2.5" height="15" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="4.25" y1="10.75" x2="6.75" y2="10.75" stroke="#5DB86A" stroke-width="0.5"/><line x1="5.5" y1="4" x2="7.5" y2="2" stroke="#5DB86A" stroke-width="0.5"/><rect x="11.25" y="4" width="2.5" height="15" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="11.25" y1="10.75" x2="13.75" y2="10.75" stroke="#5DB86A" stroke-width="0.5"/><line x1="12.5" y1="4" x2="14.5" y2="2" stroke="#5DB86A" stroke-width="0.5"/></g><g transform="translate(80,54)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#5DB86A" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#5DB86A" stroke-width="0.55" fill="none"/><rect x="4.25" y="4" width="2.5" height="7" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="4.25" y1="7" x2="6.75" y2="7" stroke="#5DB86A" stroke-width="0.5"/><line x1="5.5" y1="4" x2="7.5" y2="2" stroke="#5DB86A" stroke-width="0.5"/><rect x="11.25" y="4" width="2.5" height="7" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="11.25" y1="7" x2="13.75" y2="7" stroke="#5DB86A" stroke-width="0.5"/><line x1="12.5" y1="4" x2="14.5" y2="2" stroke="#5DB86A" stroke-width="0.5"/><rect x="4.25" y="13" width="2.5" height="7" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="4.25" y1="16" x2="6.75" y2="16" stroke="#5DB86A" stroke-width="0.5"/><rect x="11.25" y="13" width="2.5" height="7" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="11.25" y1="16" x2="13.75" y2="16" stroke="#5DB86A" stroke-width="0.5"/></g><g transform="translate(101,54)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#5DB86A" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#5DB86A" stroke-width="0.55" fill="none"/><rect x="4.25" y="4" width="2.5" height="7" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="4.25" y1="7" x2="6.75" y2="7" stroke="#5DB86A" stroke-width="0.5"/><line x1="5.5" y1="4" x2="7.5" y2="2" stroke="#5DB86A" stroke-width="0.5"/><rect x="11.25" y="4" width="2.5" height="7" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="11.25" y1="7" x2="13.75" y2="7" stroke="#5DB86A" stroke-width="0.5"/><line x1="12.5" y1="4" x2="14.5" y2="2" stroke="#5DB86A" stroke-width="0.5"/><rect x="4.25" y="13" width="2.5" height="7" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="4.25" y1="16" x2="6.75" y2="16" stroke="#5DB86A" stroke-width="0.5"/><rect x="11.25" y="13" width="2.5" height="7" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="11.25" y1="16" x2="13.75" y2="16" stroke="#5DB86A" stroke-width="0.5"/></g><g transform="translate(122,54)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#5DB86A" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#5DB86A" stroke-width="0.55" fill="none"/><rect x="4.25" y="4" width="2.5" height="7" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="4.25" y1="7" x2="6.75" y2="7" stroke="#5DB86A" stroke-width="0.5"/><line x1="5.5" y1="4" x2="7.5" y2="2" stroke="#5DB86A" stroke-width="0.5"/><rect x="11.25" y="4" width="2.5" height="7" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="11.25" y1="7" x2="13.75" y2="7" stroke="#5DB86A" stroke-width="0.5"/><line x1="12.5" y1="4" x2="14.5" y2="2" stroke="#5DB86A" stroke-width="0.5"/><rect x="4.25" y="13" width="2.5" height="7" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="4.25" y1="16" x2="6.75" y2="16" stroke="#5DB86A" stroke-width="0.5"/><rect x="11.25" y="13" width="2.5" height="7" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="11.25" y1="16" x2="13.75" y2="16" stroke="#5DB86A" stroke-width="0.5"/></g><g transform="translate(80,81)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#5DB86A" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#5DB86A" stroke-width="0.55" fill="none"/><rect x="4.25" y="3" width="2.5" height="5" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="4.25" y1="5.5" x2="6.75" y2="5.5" stroke="#5DB86A" stroke-width="0.5"/><rect x="11.25" y="3" width="2.5" height="5" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="11.25" y1="5.5" x2="13.75" y2="5.5" stroke="#5DB86A" stroke-width="0.5"/><rect x="4.25" y="10" width="2.5" height="5" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="4.25" y1="12.5" x2="6.75" y2="12.5" stroke="#5DB86A" stroke-width="0.5"/><rect x="11.25" y="10" width="2.5" height="5" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="11.25" y1="12.5" x2="13.75" y2="12.5" stroke="#5DB86A" stroke-width="0.5"/><rect x="4.25" y="17" width="2.5" height="5" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="4.25" y1="19.5" x2="6.75" y2="19.5" stroke="#5DB86A" stroke-width="0.5"/><rect x="11.25" y="17" width="2.5" height="5" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="11.25" y1="19.5" x2="13.75" y2="19.5" stroke="#5DB86A" stroke-width="0.5"/></g><g transform="translate(101,81)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#5DB86A" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#5DB86A" stroke-width="0.55" fill="none"/><rect x="4.25" y="3" width="2.5" height="5" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="4.25" y1="5.5" x2="6.75" y2="5.5" stroke="#5DB86A" stroke-width="0.5"/><rect x="11.25" y="3" width="2.5" height="5" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="11.25" y1="5.5" x2="13.75" y2="5.5" stroke="#5DB86A" stroke-width="0.5"/><rect x="4.25" y="10" width="2.5" height="5" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="4.25" y1="12.5" x2="6.75" y2="12.5" stroke="#5DB86A" stroke-width="0.5"/><rect x="11.25" y="10" width="2.5" height="5" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="11.25" y1="12.5" x2="13.75" y2="12.5" stroke="#5DB86A" stroke-width="0.5"/><rect x="4.25" y="17" width="2.5" height="5" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="4.25" y1="19.5" x2="6.75" y2="19.5" stroke="#5DB86A" stroke-width="0.5"/><rect x="11.25" y="17" width="2.5" height="5" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="11.25" y1="19.5" x2="13.75" y2="19.5" stroke="#5DB86A" stroke-width="0.5"/></g><g transform="translate(122,81)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#5DB86A" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#5DB86A" stroke-width="0.55" fill="none"/><rect x="4.25" y="3" width="2.5" height="5" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="4.25" y1="5.5" x2="6.75" y2="5.5" stroke="#5DB86A" stroke-width="0.5"/><rect x="11.25" y="3" width="2.5" height="5" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="11.25" y1="5.5" x2="13.75" y2="5.5" stroke="#5DB86A" stroke-width="0.5"/><rect x="4.25" y="10" width="2.5" height="5" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="4.25" y1="12.5" x2="6.75" y2="12.5" stroke="#5DB86A" stroke-width="0.5"/><rect x="11.25" y="10" width="2.5" height="5" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="11.25" y1="12.5" x2="13.75" y2="12.5" stroke="#5DB86A" stroke-width="0.5"/><rect x="4.25" y="17" width="2.5" height="5" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="4.25" y1="19.5" x2="6.75" y2="19.5" stroke="#5DB86A" stroke-width="0.5"/><rect x="11.25" y="17" width="2.5" height="5" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="11.25" y1="19.5" x2="13.75" y2="19.5" stroke="#5DB86A" stroke-width="0.5"/></g><g transform="translate(90,108)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#5DB86A" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#5DB86A" stroke-width="0.55" fill="none"/><rect x="4.25" y="4" width="2.5" height="15" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="4.25" y1="10.75" x2="6.75" y2="10.75" stroke="#5DB86A" stroke-width="0.5"/><line x1="5.5" y1="4" x2="7.5" y2="2" stroke="#5DB86A" stroke-width="0.5"/><rect x="11.25" y="4" width="2.5" height="15" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="11.25" y1="10.75" x2="13.75" y2="10.75" stroke="#5DB86A" stroke-width="0.5"/><line x1="12.5" y1="4" x2="14.5" y2="2" stroke="#5DB86A" stroke-width="0.5"/></g><g transform="translate(111,108)"><rect x="0" y="0" width="18" height="24" rx="2.5" stroke="#5DB86A" stroke-width="1.1" fill="none"/><rect x="2" y="2" width="14" height="20" rx="1.5" stroke="#5DB86A" stroke-width="0.55" fill="none"/><rect x="4.25" y="4" width="2.5" height="15" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="4.25" y1="10.75" x2="6.75" y2="10.75" stroke="#5DB86A" stroke-width="0.5"/><line x1="5.5" y1="4" x2="7.5" y2="2" stroke="#5DB86A" stroke-width="0.5"/><rect x="11.25" y="4" width="2.5" height="15" rx="1.25" stroke="#5DB86A" stroke-width="0.75" fill="none"/><line x1="11.25" y1="10.75" x2="13.75" y2="10.75" stroke="#5DB86A" stroke-width="0.5"/><line x1="12.5" y1="4" x2="14.5" y2="2" stroke="#5DB86A" stroke-width="0.5"/></g></svg></div>
+          <div class="d4-hand-badge">The Jade Tier</div>
+        </div>
+        <div class="d4-mc-body">
+          <div class="d4-hand-name">Jade Tier</div>
+          <div class="d4-hand-tag">The rarest hand. For those who commit fully.</div>
+          <div class="d4-c-divider"></div>
+          <div class="d4-c-tier">Lifetime Membership</div>
+          <div class="d4-c-price"><sup class="d5-rs">&#8377;</sup>10,000</div>
+          <div class="d4-c-period">Once, always a member, founding status</div>
+          <ul class="d4-feats">
+            <li>Everything in Ruby</li>
+            <li>IMA mahjong mat (yours to keep)</li>
+            <li>Exclusive merchandise pack</li>
+            <li>Founding member certificate</li>
+          </ul>
+        </div>
+        <button class="d4-c-btn">Play the Jade</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── S7: SOCIAL ── -->
+  <section class="d5-social">
+      <div class="d5-social-inner">
+        <div class="d5-sec-tag d5-fade">Community</div>
+        <h2 class="d5-sec-h2 d5-fade">Join the Conversation</h2>
+        <p class="d5-social-copy d5-fade">IMA grows one table at a time. Bring a friend, host a session, or help open the next chapter in your city.</p>
+        <div class="d5-social-actions d5-fade">
+          <div class="d5-social-card">
+            <svg viewBox="0 0 28 42"><use href="#t-circle"/></svg>
+            <h3>Start a Chapter</h3>
+            <p>Build a local table circle with IMA guidance, event formats and trainer support.</p>
+          </div>
+          <div class="d5-social-card">
+            <svg viewBox="0 0 28 42"><use href="#t-bamboo"/></svg>
+            <h3>Host a Table</h3>
+            <p>Invite new players into the game through family sessions, club nights and learning tables.</p>
+          </div>
+          <div class="d5-social-card">
+            <svg viewBox="0 0 28 42"><use href="#t-dragon"/></svg>
+            <h3>Follow the Season</h3>
+            <p>Tournaments, trainer notes and community stories will live on @indianmahjongassociation.</p>
+          </div>
+        </div>
+        <a class="d5-social-link d5-fade" href="#d5-mem">Become a Member</a>
+      </div>
+    </section>
+
+  <!-- ── S8: FOOTER ── -->
+  <footer class="d5-footer" id="d5-footer">
+    <div class="d5-foot-main">
+      <div class="d5-foot-logo">IMA</div>
+      <div class="d5-foot-tag">India's authentic mahjong community</div>
+      <div class="d5-foot-socials">
+        <div class="d5-foot-si" title="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </div>
+        <div class="d5-foot-si" title="Facebook">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        </div>
+        <div class="d5-foot-si" title="YouTube">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="3"/><polygon points="10,9 16,12 10,15" fill="currentColor" stroke="none"/></svg>
+        </div>
+      </div>
+    </div>
+    <div class="d5-foot-bar">
+      <p class="d5-foot-copy">&copy; 2024 Indian Mahjong Association. All rights reserved.</p>
+      <p class="d5-foot-rzp">Payments secured by <span>Razorpay</span></p>
+    </div>
+  </footer>
+
+
+  <button id="d5-scroll-top" aria-label="Back to top">&#8679;</button>
+</div>
+
+
+<script>
+/* D1 fade-up observer */
+var d1Obs = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('visible'); });
+},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.d1-fade').forEach(function(el){ d1Obs.observe(el); });
+
+/* D4 fade-up observer */
+var d4Obs = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('visible'); });
+},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.d4-fade').forEach(function(el){ d4Obs.observe(el); });
+
+/* Membership card slide-up (shared) */
+var memObs = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('in'); });
+},{threshold:0.12});
+document.querySelectorAll('.d4-mc').forEach(function(el){ memObs.observe(el); });
+
+function openMobMenu(){document.getElementById('mob-menu').classList.add('open');}
+
+/* Header hides on scroll down and returns on any upward movement */
+(function(){
+  var nav = document.querySelector('.d5-nav');
+  if(!nav) return;
+  var lastY = window.scrollY;
+  window.addEventListener('scroll', function(){
+    var currentY = window.scrollY;
+    nav.classList.toggle('nav-raised', currentY > 8);
+    if(currentY <= 8 || currentY < lastY){
+      nav.classList.remove('nav-hidden');
+    } else if(currentY > lastY && currentY > 120){
+      nav.classList.add('nav-hidden');
+    }
+    lastY = currentY;
+  }, {passive:true});
+})();
+
+/* D5 fade-up observer */
+var d5Obs = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('visible'); });
+},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.d5-fade').forEach(function(el){ d5Obs.observe(el); });
+
+/* D5 scroll-to-top */
+(function(){
+  var btn = document.getElementById('d5-scroll-top');
+  if(!btn) return;
+  window.addEventListener('scroll', function(){
+    btn.classList.toggle('visible', window.scrollY > 300);
+  });
+  btn.addEventListener('click', function(){
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+})();
+
+/* D5 mobile membership tier picker */
+(function(){
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.d5-tier-tab'));
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.d5 [data-tier-card]'));
+  if(!tabs.length || !cards.length) return;
+
+  function showTier(tier){
+    tabs.forEach(function(tab){
+      var active = tab.dataset.tier === tier;
+      tab.classList.toggle('active', active);
+      tab.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
+    cards.forEach(function(card){
+      card.classList.toggle('active-tier', card.dataset.tierCard === tier);
+    });
+  }
+
+  tabs.forEach(function(tab){
+    tab.addEventListener('click', function(){ showTier(tab.dataset.tier); });
+  });
+})();
+</script>
+
+
+  <!-- MOBILE NAV OVERLAY -->
+  <div id="mob-menu" class="mob-menu-global">
+    <button class="mob-close" onclick="document.getElementById('mob-menu').classList.remove('open')">&#10005;</button>
+    <a href="#d5-mem" onclick="document.getElementById('mob-menu').classList.remove('open')">Membership</a>
+    <a href="#d5-footer" onclick="document.getElementById('mob-menu').classList.remove('open')">Contact</a>
+  </div>
+</body>
+</html>
