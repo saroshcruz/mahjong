@@ -1661,8 +1661,8 @@ sup.d3-rs{font-size:22px;vertical-align:super;}
 
 /* Warmer story portrait */
 .d5-story{background:linear-gradient(180deg,#4f0b0b 0%,#3E0C0C 100%);}
-.d5-story-art{height:560px;border-color:rgba(245,200,122,.24);background:#2A0808;box-shadow:0 24px 70px rgba(0,0,0,.18);}
-.d5-story-photo{width:78%;height:88%;margin:0 auto;object-fit:cover;object-position:center top;}
+.d5-story-art{height:660px;border-color:rgba(245,200,122,.24);background:#2A0808;box-shadow:0 24px 70px rgba(0,0,0,.18);}
+.d5-story-photo{width:82%;height:96%;margin:0 auto;object-fit:contain;object-position:center top;}
 .d5-story-art-svg{opacity:.55;}
 .d5-story-caption{background:linear-gradient(to top,rgba(42,8,8,.92) 48%,transparent);padding:54px 28px 24px;}
 
@@ -1727,17 +1727,11 @@ sup.d3-rs{font-size:22px;vertical-align:super;}
   .d5-nav-links{display:none;}
   .d5-hero-inner{padding:0 24px;max-width:100%;box-sizing:border-box;}
   .d5-story-inner{flex-direction:column;padding:60px 24px;gap:40px;}
-  .d5-story-art{height:380px;}
-  .d5-story-photo{width:82%;height:86%;}
+  .d5-story-art{height:480px;}
+  .d5-story-photo{width:88%;height:96%;object-fit:contain;object-position:center top;}
   .d5-diff-grid{grid-template-columns:1fr;gap:16px;padding:0 24px;}
-  .d5-trainers-grid{grid-template-columns:1fr;gap:14px;padding:0 24px;}
-  .d5-tw,.d5-tw:nth-child(4),.d5-tw:nth-child(5){grid-column:auto;height:auto;perspective:none;}
-  .d5-ti{transform:none!important;}
-  .d5-tf,.d5-tb{position:relative;inset:auto;transform:none;backface-visibility:visible;border-radius:7px;}
-  .d5-tb{display:none;}
-  .d5-tf{min-height:0;align-items:flex-start;text-align:left;padding:18px 18px 18px 94px;}
-  .d5-tphoto{position:absolute;left:18px;top:18px;width:58px;height:58px;font-size:22px;}
-  .d5-tcity,.d5-tspec{width:auto;text-align:left;}
+  .d5-trainers-grid{grid-template-columns:1fr 1fr;gap:12px;padding:0 16px;}
+  .d5-tw,.d5-tw:nth-child(4),.d5-tw:nth-child(5){grid-column:auto;height:220px;}
   .d5-tile-deco,.d5-hover-hint{display:none;}
   .d5-events-grid{padding:0 24px;}
   .d5-mem-inner{padding:0 24px;}
@@ -1760,7 +1754,11 @@ sup.d3-rs{font-size:22px;vertical-align:super;}
   #d5-scroll-top{bottom:20px;right:20px;}
 }
 @media(max-width:480px){
-  .d5-trainers-grid{grid-template-columns:1fr;}
+  .d5-trainers-grid{grid-template-columns:1fr 1fr;gap:10px;}
+  .d5-tw{height:200px;}
+  .d5-tf,.d5-tb{padding:16px 10px;}
+  .d5-tname{font-size:13px;}
+  .d5-tspec{font-size:10px;}
   .d5-hero-h1{font-size:clamp(36px,10vw,60px);}
   .d5-mem-title{font-size:32px;}
 }
@@ -2203,6 +2201,14 @@ document.querySelectorAll('.d5-fade').forEach(function(el){ d5Obs.observe(el); }
     window.scrollTo({top:0,behavior:'smooth'});
   });
 })();
+
+/* D5 trainer tap-to-flip — iOS touch fix */
+document.querySelectorAll('.d5-tw').forEach(function(card){
+  card.addEventListener('touchend',function(e){
+    e.preventDefault();
+    card.classList.toggle('flipped');
+  },{passive:false});
+});
 
 /* D5 mobile membership tier picker */
 (function(){
